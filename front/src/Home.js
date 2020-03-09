@@ -1,8 +1,12 @@
 import React from "react";
+import QuizzThumbnail from "./QuizzThumbnail";
 
 function Home()  {
     return (
-        <div>Home</div>
+        <div>Page d'accueil
+            <QuizzThumbnail />
+        </div>
+
     );
 }
 
