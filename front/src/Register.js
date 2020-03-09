@@ -33,15 +33,17 @@ function Register()  {
                 avatar={p.avatar}/>);
 
     return (
-        <div>
+        <div className={"log"}>
             <h2> Register</h2>
             <form action="#" onSubmit={e => addUser(e)}>
-                <input type={"text"} placeholder={"Username"} name={"name"}/>
-                <input type={"password"} placeholder={"Password"} name={"password"}/>
-                <input type={"password"} placeholder={"Confirm password"} name={"confirmpassword"}/>
-                <input type={"submit"} value={"create account"}/>
+                <div className={"infosLog"}>
+                    <input type={"text"} placeholder={"Username"} name={"name"}/>
+                    <input type={"password"} placeholder={"Password"} name={"password"}/>
+                    <input type={"password"} placeholder={"Confirm password"} name={"confirmpassword"}/>
+                </div>
+                <input type={"submit"} value={"create account"} className={"buttonLog"}/>
             </form>
-            <p> Already registered ? Click <a href={"./login"}> here </a> to sign in. </p>
+            <p> Already registered ? Click <a href={"./login"} className={"lienLog"}> here </a> to sign in. </p>
             {jsxUsers}
         </div>
 

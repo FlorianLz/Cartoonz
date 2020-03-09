@@ -40,3 +40,113 @@ body{
 .infos > .title{
   text-transform: uppercase;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*---------------------
+-----------------------
+   Login / Connexion
+-----------------------
+---------------------*/
+.log{
+  text-align: center;
+  margin-top: 200px;
+}
+
+.log h2{
+  color: #444343;
+}
+
+.log form{
+  width: 50%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.log p{
+  margin-top: 30px;
+}
+
+.infosLog{
+  display: flex;
+  flex-direction: column;
+}
+
+.infosLog input{
+  border: none;
+  border-radius: 10px;
+  padding: 10px;
+  margin-bottom: 15px;
+}
+
+.buttonLog{
+  border: none;
+  border-radius: 15px;
+  padding: 6px;
+  text-transform: uppercase;
+  color: white;
+  background-color: #C26573;
+  width: 60%;
+}
+
+.lienLog{
+  color: #444343;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+
+
+
+
+
+
+
+
