@@ -27,6 +27,23 @@ router
                 }
             );
         })
+    .get('/users',
+        (req, res) => {
+            db.all(
+                "select * from users",
+                (err, rows) => res.json(rows)
+            );
+        })
+    .get('/users/:id',
+        (req, res) => {
+            db.get(
+                "select * from users where id=?",
+                req.params.id,
+                (err, row) => {
+                    res.json(row)
+                }
+            );
+        })
 
     .use((req, res) => {
         res.status(400);
