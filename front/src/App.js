@@ -7,6 +7,7 @@ import {BrowserRouter, Switch, Route} from "react-router-dom";
 import Home from "./Home.js";
 import About from "./About.js";
 import Login from "./Login.js";
+import Register from "./Register.js";
 
 function App()  {
     return (
@@ -16,6 +17,7 @@ function App()  {
                     <Route exact={true} path="/" component={Home} />
                     <Route exact={true} path="/about" component={About} />
                     <Route exact={true} path="/login" component={Login} />
+                    <Route exact={true} path="/register" component={Register} />
                     <Route path="*" component={() => <p>Page Not Found</p>} />
                 </Switch>
             </div>
