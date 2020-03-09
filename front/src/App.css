@@ -9,3 +9,19 @@ body{
   padding:0;
   box-sizing: border-box;
 }
+
+/*---------------------
+-----------------------
+        Home
+-----------------------
+---------------------*/
+.quizz_card{
+  background-color:blue;
+  width:90%;
+  margin:auto;
+  display:flex;
+  margin-bottom:15px;
+}
+.image{
+  width:30%;
+}
