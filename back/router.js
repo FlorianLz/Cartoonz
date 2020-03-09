@@ -10,17 +10,27 @@ router
         res.json("Hello world!!");
     })
 
-    .use((req, res) => {
-        res.status(400);
-        res.json({
-            error: "Bad request"
-        });
-    })
-
     .get('/quizz',
         (req, res) => {
             db.all(
                 "select * from quizzes",
                 (err, rows) => res.json(rows)
             );
+    })
+    .get('/quizz/:id',
+        (req, res) => {
+            db.get(
+                "select * from quizzes where id=?",
+                req.params.id,
+                (err, row) => {
+                    res.json(row)
+                }
+            );
+        })
+
+    .use((req, res) => {
+        res.status(400);
+        res.json({
+            error: "Bad request"
+        });
     });
