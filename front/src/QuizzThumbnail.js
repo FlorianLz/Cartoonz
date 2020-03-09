@@ -4,12 +4,11 @@ export default function QuizzThumbnail(props)  {
     return (
         <div className={"quizz_card"}>
             <div className="image">
-
+                <img src={props.image} />
             </div>
             <div className="infos">
-                <p>Title : {props.title}</p>
-                <p>Published on {props.date}</p>
-                <p>by {props.author}</p>
+                <p className={"title"}>{props.title}</p>
+                <p>Published on 09/03/2020 by user</p>
             </div>
         </div>
     );

@@ -8,6 +8,7 @@ body{
   margin:0;
   padding:0;
   box-sizing: border-box;
+  background: #EAEAEA;
 }
 
 /*---------------------
@@ -16,7 +17,7 @@ body{
 -----------------------
 ---------------------*/
 .quizz_card{
-  background-color:blue;
+  background-color:#D1CFCF;
   width:90%;
   margin:auto;
   display:flex;
@@ -24,4 +25,18 @@ body{
 }
 .image{
   width:30%;
+  padding:20px;
+}
+.image > img{
+  width:100%;
+  height:100%;
+}
+.infos{
+  display:flex;
+  flex-direction: column;
+  align-items: center;
+  width:70%;
+}
+.infos > .title{
+  text-transform: uppercase;
 }
