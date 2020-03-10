@@ -57,7 +57,7 @@ router
 
     .post('/users',
         (req, res) => {
-            db.run("insert into users(name,password,avatar,admin) values(?,?,?,?)", ['tto','1234','avatar','0']);
+            db.run("insert into users(name,password,avatar,admin) values(?,?,?,?)", ['fff','ttt','avatar','0']);
             res.redirect(303, '/users');
         })
 
