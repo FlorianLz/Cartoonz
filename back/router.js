@@ -64,6 +64,16 @@ router
                 }
             );
         })
+    .get('/answer/:id',
+        (req, res) => {
+            db.all(
+                "select * from answers where questions_id=?",
+                req.params.id,
+                (err, row) => {
+                    res.json(row)
+                }
+            );
+        })
 
     .post('/users',
         (req, res) => {

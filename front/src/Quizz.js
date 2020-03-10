@@ -1,9 +1,11 @@
 import React, {useEffect, useState} from "react";
 import axios from "axios";
 import Question from "./Question";
+import Answers from "./Answers";
 
 export default function Quizz(props)  {
     const [questions, setQuestions] = useState([]);
+    const [answers, setAnswers] = useState([]);
     const [quizz_name, setQuizzName] = useState([]);
     let idquizz = props.match.params.id;
     let num_question=1;
@@ -26,12 +28,13 @@ export default function Quizz(props)  {
 
     useEffect(() => {
         gestQuestions();
-        getQuizzes()
+        getQuizzes();
     },[]);
 
     return (
-        <div>
-            {quizz_name}
+        <div className={'quizzcontent'}>
+            <div align="center"><img src="../images/logo_final.png" alt="Image de dessins animée" className="logo"/></div>
+            <h4>{quizz_name}</h4>
             {jsxQuestions}
         </div>
 

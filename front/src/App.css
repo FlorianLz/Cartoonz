@@ -178,7 +178,35 @@ div#slider figure {
   text-transform: uppercase;
 }
 
-
+/*---------------------
+-----------------------
+        Quizz page
+-----------------------
+---------------------*/
+.imganswer{
+  width:20vw;
+  height:20vw;
+}
+.quizzcontent > h4{
+  text-align: center;
+  color:var(--rouge);
+  text-transform: uppercase;
+  padding-top:5px;
+  padding-bottom:15px;
+}
+.quizzcontent > div > h3{
+  text-align: center;
+}
+.quizzcontent > div > ul{
+  display:flex;
+  justify-content: space-evenly;
+  list-style-type: none;
+  padding-top:15px;
+  padding-bottom:25px;
+}
+.quizzcontent > div > ul > li{
+  width:min-content;
+}
 
 
 

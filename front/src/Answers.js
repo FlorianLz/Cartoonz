@@ -1,10 +1,16 @@
-import React from "react";
+import React, {useEffect, useState} from "react";
+import axios from "axios";
+import Question from "./Question";
+import Answers from "./Answers";
 
-export default function Answers(props)  {
+export default function Answer(props)  {
+    let picture=[];
+    if (props.picture){
+        picture.push(<img className={'imganswer'} src={"http://localhost:8000/" + props.picture} />);
+    }
     return (
-        <div>
-            {props.answer}
-        </div>
+            <li>{props.sentence}{picture}</li>
+
     );
 
 }
