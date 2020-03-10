@@ -6,7 +6,7 @@ import {BrowserRouter, Switch, Route} from "react-router-dom";
 
 import Home from "./Home.js";
 import About from "./About.js";
-import Login from "./Login.js";
+import Login, {ProtectedRoute} from "./Login.js";
 import Register from "./Register.js";
 import Quizz from "./Quizz.js";
 
