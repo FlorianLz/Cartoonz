@@ -25,3 +25,262 @@ body{
 .image{
   width:30%;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@font-face {
+  font-family: "SailecLight";
+  src: url("fonts/Sailec\ Light.ttf");
+  
+}
+
+@font-face {
+  font-family: "SailecMedium";
+  src: url("fonts/Sailec\ Medium.ttf");
+  
+}
+.about-bck {
+  background:#EAEAEA;
+  width:100vw;
+  height:100vh;
+}
+#search {
+  background-color: white;
+  border: none;
+  border-radius: 1vh;
+  width:70vw;
+  height:4vh;
+  color: #444343;
+  font-family: SailecLight;
+  margin:auto;
+
+}
+
+#loupe {
+  background-image:url('../src/imgs/loupe.svg');
+  width:5vw;
+  height:4vh;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  position:relative;
+  top: -4vh;
+  left:60vw;
+}
