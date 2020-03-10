@@ -6,25 +6,56 @@ import {Link} from "react-router-dom";
 
 export default function Quizz(props)  {
     const [questions, setQuestions] = useState([]);
+    const [answers, setAnswers] = useState([]);
     const [question, setQuestion] = useState([]);
+    const [nbQuestions, setNbQuestions] = useState([]);
+    const [progression, setProgression] = useState(0);
+    const [numQuestion, setNumQuestion] = useState(1);
     const [quizz_name, setQuizzName] = useState([]);
     let idquizz = props.match.params.id;
-    let num_question=1;
 
-    let jsxQuestions = questions.map(p => <Question
+    /*let jsxQuestion = <Question
+        id = {question.id}
+        question={question.sentence}
+        num_question={numQuestion}
+        progression={progression+1}
+    />;*/
+
+    let jsxAnswers = answers.map(p => <Answers
         id = {p.id}
-        question={p.sentence}
-        num_question = {num_question++}
-        idquizz={idquizz}
-        />);
+        sentence={p.sentence}
+        picture={p.picture_url}
+    />);
+
+    function next(){
+        if(progression < nbQuestions-1){
+            let suivant=questions[progression+1].id;
+            setNumQuestion(suivant);
+            setProgression(progression+1);
+            setQuestion(questions[progression+1]);
+            afficherQuestion(suivant);
+            getAnswers(suivant);
+        }
+
+    }
 
     async function getQuestions() {
         const data = (await axios.get('http://localhost:8000/question/'+idquizz)).data;
         setQuestions(data);
+        setQuestion(data[0]);
+        setNbQuestions(data.length);
+        setNumQuestion(data[0].id);
+        afficherQuestion(data[0].id);
+        getAnswers(data[0].id);
     }
-    async function afficherQuestion(num_question) {
-        const data = (await axios.get('http://localhost:8000/question/'+idquizz+'/'+num_question)).data;
+    async function getAnswers(varr) {
+        const data = (await axios.get('http://localhost:8000/answer/'+varr)).data;
+        setAnswers(data);
+    }
+    async function afficherQuestion(varr) {
+        const data = (await axios.get('http://localhost:8000/question/'+idquizz+'/'+ varr)).data;
         setQuestion(data);
+        console.log(data);
     }
     async function getQuizzes() {
         const data = (await axios.get('http://localhost:8000/quizz/'+idquizz)).data;
@@ -34,15 +65,19 @@ export default function Quizz(props)  {
     useEffect(() => {
         getQuestions();
         getQuizzes();
-        afficherQuestion(1);
+        getAnswers();
     },[]);
 
     return (
         <div className={'quizzcontent'}>
             <div align="center"><img src="../images/logo_final.png" alt="Image de dessins animée" className="logo"/></div>
             <h4>{quizz_name}</h4>
-            {jsxQuestions}
-            <div class={"buttondiv"}><Link className={"validate_button"} to={'/validate'}>Valider</Link></div>
+            <p>{progression+1} / {nbQuestions} questions</p>
+            <h3>{question.sentence}</h3>
+            <ul>
+                {jsxAnswers}
+            </ul>
+            <div className={"buttondiv"}><div className={"buttondiv validate_button"} onClick={e => next()}>Valider</div></div>
         </div>
 
     );
