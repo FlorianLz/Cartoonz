@@ -8,7 +8,12 @@ function Home()  {
     const msg = cookies.login && cookies.login.name ? "connectio OK" : "no coonection";
     const [quizzes, setQuizzes] = useState([]);
 
-
+    let jsxQuizzes = quizzes.map(p => <QuizzThumbnail
+        id = {p.id}
+        title={p.name}
+        date={p.date}
+        author={p.author}
+        image={p.picture_url}/>)
 
     async function getQuizzes() {
         const data = (await axios.get('http://localhost:8000/quizz')).data;
@@ -44,8 +49,8 @@ function Home()  {
                 <input type="search" id="search" placeholder="Search a quizz"/>
                 <input type="submit" id="loupe" value=""/>
             </form>
+            {jsxQuizzes}
         </div>
-
     );
 }
 
