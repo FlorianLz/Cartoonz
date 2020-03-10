@@ -6,6 +6,9 @@ import {BrowserRouter, Switch, Route} from "react-router-dom";
 
 import Home from "./Home.js";
 import About from "./About.js";
+import Login from "./Login.js";
+import Register from "./Register.js";
+import Quizz from "./Quizz.js";
 
 function App()  {
     return (
@@ -14,6 +17,9 @@ function App()  {
                 <Switch>
                     <Route exact={true} path="/" component={Home} />
                     <Route exact={true} path="/about" component={About} />
+                    <Route exact={true} path="/login" component={Login} />
+                    <Route exact={true} path="/register" component={Register} />
+                    <Route exact={true} path="/quizz/:id" component={Quizz}/>
                     <Route path="*" component={() => <p>Page Not Found</p>} />
                 </Switch>
             </div>
