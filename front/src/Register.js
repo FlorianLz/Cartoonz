@@ -15,7 +15,7 @@ function Register()  {
     async function addUser(e) {
         e.preventDefault();
         await axios.post('http://localhost:8000/users', {
-            name : e.target.elements[0].value,
+            username : e.target.elements[0].value,
             password : e.target.elements[1].value,
             passwordconfirm : e.target.elements[2].value,
             avatar : e.target.elements[3].value
@@ -30,17 +30,18 @@ function Register()  {
     let jsxUsers = users
         .map(p =>
             <UserThumbnail
-                name={p.name}
+                name={p.username}
                 password={p.password}
                 avatar={p.avatar}/>);
 
     if(page==1) return <Redirect to="/"/>
+
     return (
         <div className={"log"}>
             <h2> Register</h2>
             <form action="#" onSubmit={e => addUser(e)}>
                 <div className={"infosLog"}>
-                    <input type={"text"} placeholder={"Username"} name={"name"}/>
+                    <input type={"text"} placeholder={"Username"} name={"username"}/>
                     <input type={"password"} placeholder={"Password"} name={"password"}/>
                     <input type={"password"} placeholder={"Confirm password"} name={"confirmpassword"}/>
                     <input type={"hidden"} name={"avatar"} value={"coucou"}/>
@@ -51,7 +52,6 @@ function Register()  {
             <p> Already registered ? Click <a href={"./login"} className={"lienLog"}> here </a> to sign in. </p>
             {jsxUsers}
         </div>
-
     );
 }
 
