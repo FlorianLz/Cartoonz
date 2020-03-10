@@ -6,7 +6,7 @@ function Register()  {
     const [users, setUsers] = useState([]);
 
     async function getUsers(){
-        const data = (await axios.get('http://localhost:8000/users')).data;
+        const data = (await axios.post('http://localhost:8000/users')).data;
         setUsers(data);
     }
 
