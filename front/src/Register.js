@@ -38,6 +38,7 @@ function Register()  {
 
     return (
         <div className={"log"}>
+            <div align="center"><img src="images/logo_final.png" alt="Image de dessins animée" className="logo"/></div>
             <h2> Register</h2>
             <form action="#" onSubmit={e => addUser(e)}>
                 <div className={"infosLog"}>

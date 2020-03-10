@@ -8,6 +8,8 @@ function FormLogin(props)  {
 
     return (
         <div className={"log"}>
+            <div align="center"><img src="images/logo_final.png" alt="Image de dessins animée" className="logo"/></div>
+
             <h2> Sign in</h2>
             <form action="#" onSubmit={props.onSignin}>
                 <div className={"infosLog"}>
