@@ -22,7 +22,18 @@ function Home()  {
     },[]);
 
     return (
-        <div>Home Page <br /><br />
+        <div>
+            <div align="center"><img src="images/logo_final.png" alt="Image de dessins animée" className="logo"/></div>
+
+            <div id="slider">
+                <figure>
+                    <img src="images/Carousel.png" alt/>
+                    <img src="images/Carousel.png" alt/>
+                    <img src="images/Carousel.png" alt/>
+                    <img src="images/Carousel.png" alt/>
+                    <img src="images/Carousel.png" alt/>
+                </figure>
+            </div>
             {jsxQuizzes}
         </div>
 
