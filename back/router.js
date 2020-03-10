@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router();
 const sqlite3 = require('sqlite3').verbose();
 const db = new sqlite3.Database('db/quiz');
+const verify = require('./connectionRouter').verify;
 
 module.exports = router;
 
@@ -89,16 +90,14 @@ router
         (req, res) => {
             if(req.body.password == req.body.passwordconfirm){
                 console.log("good");
-                db.run("insert into users(name,password,avatar,admin) values(?,?,?,?)", [req.body.name,req.body.password,req.body.avatar,'0']);
+                db.run("insert into users(username,password,avatar,admin) values(?,?,?,?)", [req.body.username,req.body.password,req.body.avatar,'0']);
                 res.redirect(303, '/');
-            } else {
-                document.getElementById('sentencepwd').style.display = "block";
             }
         })
 
     .patch('/users/:id',
         (req, res) => {
-            db.run("update persons set name=? where id=?",[req.body,req.params.id]);
+            db.run("update persons set username=? where id=?",[req.body,req.params.id]);
             res.status(200).json(req.body);
         })
 
