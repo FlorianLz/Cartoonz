@@ -58,10 +58,11 @@ router
     .post('/users',
         (req, res) => {
             if(req.body.password == req.body.passwordconfirm){
+                console.log("good");
                 db.run("insert into users(name,password,avatar,admin) values(?,?,?,?)", [req.body.name,req.body.password,req.body.avatar,'0']);
                 res.redirect(303, '/');
             } else {
-                res.redirect(303, '/users');
+                document.getElementById('sentencepwd').style.display = "block";
             }
         })
 

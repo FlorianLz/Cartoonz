@@ -14,13 +14,12 @@ function Register()  {
 
     async function addUser(e) {
         e.preventDefault();
-        console.log("djfmqjfmqjfqmjfmq");
         await axios.post('http://localhost:8000/users', {
             name : e.target.elements[0].value,
             password : e.target.elements[1].value,
             passwordconfirm : e.target.elements[2].value,
             avatar : e.target.elements[3].value
-        })
+        });
         setPage(1);
     }
 
@@ -47,6 +46,7 @@ function Register()  {
                     <input type={"hidden"} name={"avatar"} value={"coucou"}/>
                 </div>
                 <input type={"submit"} value={"create"} className={"buttonLog"}/>
+                <p id={"sentencepwd"}> WARNONG : it's not the same password. </p>
             </form>
             <p> Already registered ? Click <a href={"./login"} className={"lienLog"}> here </a> to sign in. </p>
             {jsxUsers}
