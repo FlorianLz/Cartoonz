@@ -11,6 +11,10 @@ const port = process.env.PORT || 8000;
 app.use(morgan('combined'));
 app.use(cors());
 app.use(bodyParser.json());
+app.use(express.static(__dirname + '/public/pictures'));
+app.get('./public/pictures/*', (req, res) => {
+    res.sendFile(req.url, {root: './'})
+});
 app.use(bodyParser.urlencoded({
     extended: true
 }));

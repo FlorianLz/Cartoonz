@@ -27,6 +27,16 @@ router
                 }
             );
         })
+    .get('/question/:id',
+        (req, res) => {
+            db.all(
+                "select * from questions where quizzes_id=?",
+                req.params.id,
+                (err, row) => {
+                    res.json(row)
+                }
+            );
+        })
     .get('/users',
         (req, res) => {
             db.all(
