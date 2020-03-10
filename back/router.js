@@ -27,6 +27,16 @@ router
                 }
             );
         })
+    .get('/question/:id',
+        (req, res) => {
+            db.all(
+                "select * from questions where quizzes_id=?",
+                req.params.id,
+                (err, row) => {
+                    res.json(row)
+                }
+            );
+        })
     .get('/users',
         (req, res) => {
             db.all(
@@ -43,6 +53,18 @@ router
                     res.json(row)
                 }
             );
+        })
+
+    .post('/users',
+        (req, res) => {
+            db.run("insert into users(name,password,avatar,admin) values(?,?,?,?)", ['fff','ttt','avatar','0']);
+            res.redirect(303, '/users');
+        })
+
+    .patch('/users/:id',
+        (req, res) => {
+            db.run("update persons set name=? where id=?",[req.body,req.params.id]);
+            res.status(200).json(req.body);
         })
 
     .use((req, res) => {
