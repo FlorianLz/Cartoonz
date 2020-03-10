@@ -278,3 +278,7 @@ div#slider figure {
   font-weight: bold;
   text-decoration: none;
 }
+
+#sentencepwd{
+  display: none;
+}
