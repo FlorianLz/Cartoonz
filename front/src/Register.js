@@ -12,6 +12,7 @@ function Register()  {
 
     async function addUser(e) {
         e.preventDefault();
+        console.log("djfmqjfmqjfqmjfmq");
         axios.post('http://localhost:8000/users', {
             name : e.target.elements[0].value,
             password : e.target.elements[1].value,
@@ -41,7 +42,7 @@ function Register()  {
                     <input type={"password"} placeholder={"Password"} name={"password"}/>
                     <input type={"password"} placeholder={"Confirm password"} name={"confirmpassword"}/>
                 </div>
-                <input type={"submit"} value={"create account"} className={"buttonLog"}/>
+                <input type={"submit"} value={"create"} className={"buttonLog"}/>
             </form>
             <p> Already registered ? Click <a href={"./login"} className={"lienLog"}> here </a> to sign in. </p>
             {jsxUsers}
