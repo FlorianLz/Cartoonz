@@ -57,8 +57,12 @@ router
 
     .post('/users',
         (req, res) => {
-            db.run("insert into users(name,password,avatar,admin) values(?,?,?,?)", ['fff','ttt','avatar','0']);
-            res.redirect(303, '/users');
+            if(req.body.password == req.body.passwordconfirm){
+                db.run("insert into users(name,password,avatar,admin) values(?,?,?,?)", [req.body.name,req.body.password,req.body.avatar,'0']);
+                res.redirect(303, '/');
+            } else {
+                res.redirect(303, '/users');
+            }
         })
 
     .patch('/users/:id',

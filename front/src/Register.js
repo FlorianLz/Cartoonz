@@ -1,25 +1,27 @@
 import React, {useEffect, useState} from "react";
 import UserThumbnail from "./UserThumbnail";
 import axios from 'axios';
+import {Redirect} from 'react-router-dom';
 
 function Register()  {
     const [users, setUsers] = useState([]);
+    const [page,setPage]=useState(0);
 
     async function getUsers(){
-        const data = (await axios.post('http://localhost:8000/users')).data;
+        const data = (await axios.get('http://localhost:8000/users')).data;
         setUsers(data);
     }
 
     async function addUser(e) {
         e.preventDefault();
         console.log("djfmqjfmqjfqmjfmq");
-        axios.post('http://localhost:8000/users', {
+        await axios.post('http://localhost:8000/users', {
             name : e.target.elements[0].value,
             password : e.target.elements[1].value,
-            avatar : e.target.elements[2].value
-        }).then(res => {
-            getUsers()
+            passwordconfirm : e.target.elements[2].value,
+            avatar : e.target.elements[3].value
         })
+        setPage(1);
     }
 
     useEffect(() => {
@@ -33,6 +35,7 @@ function Register()  {
                 password={p.password}
                 avatar={p.avatar}/>);
 
+    if(page==1) return <Redirect to="/"/>
     return (
         <div className={"log"}>
             <h2> Register</h2>
@@ -41,6 +44,7 @@ function Register()  {
                     <input type={"text"} placeholder={"Username"} name={"name"}/>
                     <input type={"password"} placeholder={"Password"} name={"password"}/>
                     <input type={"password"} placeholder={"Confirm password"} name={"confirmpassword"}/>
+                    <input type={"hidden"} name={"avatar"} value={"coucou"}/>
                 </div>
                 <input type={"submit"} value={"create"} className={"buttonLog"}/>
             </form>
