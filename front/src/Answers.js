@@ -6,7 +6,7 @@ export default function Answer(props)  {
         picture.push(<img className={'imganswer'} src={"http://localhost:8000/" + props.picture} />);
     }
     return (
-            <li><input type="checkbox" ref={props.id}/> {props.sentence}{picture}</li>
+            <li><input type="checkbox"/> {props.sentence}{picture}</li>
     );
 
 }

@@ -28,6 +28,47 @@ body{
 -----------------------
 ---------------------*/
 
+/* Navbar */
+.nav {
+  background-color: #D1CFCF;
+  height:8vh;
+  width:100vw;
+  position:absolute;
+  bottom:0;
+  left:0;
+  display:flex;
+  align-items: center;
+  align-content: center;
+}
+
+.ajouter {
+  background-image:url('images/icon_ajouter.svg');
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  width:25vw;
+  height:6vh;
+}
+
+.logo_home {
+  background-image:url('images/logo_reduit.svg');
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  width:50vw;
+  height:8vh;
+  border-radius:100%;
+}
+
+.login {
+  background-image:url('images/login.svg');
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  width:25vw;
+  height:6vh;
+}
+
 /* Logo + carousel*/
 .logo{
   width: 80vw;

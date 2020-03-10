@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from "react";
 import UserThumbnail from "./UserThumbnail";
 import axios from 'axios';
-import {Redirect} from 'react-router-dom';
+import {Link, Redirect} from 'react-router-dom';
 
 function Register()  {
     const [users, setUsers] = useState([]);
@@ -51,6 +51,10 @@ function Register()  {
             </form>
             <p> Already registered ? Click <a href={"./login"} className={"lienLog"}> here </a> to sign in. </p>
             {jsxUsers}
+            <nav className="nav"><div className="ajouter"></div>
+                <Link to={'/'}><div className="logo_home"></div></Link>
+                <Link to={'/login'}><div className="login"></div></Link>
+            </nav>
         </div>
     );
 }

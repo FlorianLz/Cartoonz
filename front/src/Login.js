@@ -17,6 +17,10 @@ function FormLogin(props)  {
                 <input type={"submit"} value={"login"} className={"buttonLog"}/>
             </form>
             <p> Not registered ? Click <a href={"./register"} className={"lienLog"}> here </a> to register. </p>
+            <nav className="nav"><div className="ajouter"></div>
+                <Link to={'/'}><div className="logo_home"></div></Link>
+                <Link to={'/login'}><div className="login"></div></Link>
+            </nav>
         </div>
 
     );

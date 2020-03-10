@@ -78,6 +78,10 @@ export default function Quizz(props)  {
                 {jsxAnswers}
             </ul>
             <div className={"buttondiv"}><div className={"buttondiv validate_button"} onClick={e => next()}>Valider</div></div>
+            <nav className="nav"><div className="ajouter"></div>
+                <Link to={'/'}><div className="logo_home"></div></Link>
+                <Link to={'/login'}><div className="login"></div></Link>
+            </nav>
         </div>
 
     );
