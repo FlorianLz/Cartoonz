@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from "react";
 import QuizzThumbnail from "./QuizzThumbnail";
 import axios from 'axios';
+import {Link} from "react-router-dom";
 
 function Home()  {
     const [quizzes, setQuizzes] = useState([]);
@@ -35,6 +36,10 @@ function Home()  {
                 </figure>
             </div>
             {jsxQuizzes}
+
+            <nav className="nav"><div className="ajouter"></div>
+            <Link to={'/'}><div className="logo_home"></div></Link>
+            <Link to={'/login'}><div className="login"></div></Link></nav>
         </div>
 
     );

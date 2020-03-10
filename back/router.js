@@ -28,6 +28,7 @@ router
             );
         })
 
+
         .get('/recherche/:searchtxt',
         (req, res) => {
             db.all(
@@ -38,6 +39,7 @@ router
                 }
             );
         })
+
 
     .get('/question/:id',
         (req, res) => {
