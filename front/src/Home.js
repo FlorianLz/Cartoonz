@@ -16,6 +16,13 @@ function Home()  {
         const data = (await axios.get('http://localhost:8000/quizz')).data;
         setQuizzes(data);
     }
+    async function search(e) {
+        e.preventDefault();
+        let txt = e.target.elements[0].value;
+        const data = (await axios.get('http://localhost:8000/recherche/'+txt)).data;
+        console.log(data);
+        setQuizzes(data);
+    }
 
     useEffect(() => {
         getQuizzes()
@@ -34,6 +41,10 @@ function Home()  {
                     <img src="images/Carousel.png" alt/>
                 </figure>
             </div>
+            <form className={"formsearch"} onSubmit={e=>search(e)}>
+                <input type="search" id="search" placeholder="Search a quizz"/>
+                <input type="submit" id="loupe" value=""/>
+            </form>
             {jsxQuizzes}
         </div>
 

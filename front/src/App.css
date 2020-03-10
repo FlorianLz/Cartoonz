@@ -108,20 +108,29 @@ div#slider figure {
   height:4vh;
   color: #444343;
   font-family: SailecLight;
-  margin:auto;
+  outline: none;
 
+}
+.formsearch{
+  display:flex;
+  justify-content: center;
+  margin: 20px 0px 20px 0px;
+  outline: none;
 }
 
 #loupe {
-  background-image:url('../src/imgs/loupe.svg');
-  width:5vw;
+  background-image:url(images/loupe.svg);
+  width:7vw;
   height:4vh;
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center;
   position:relative;
-  top: -4vh;
-  left:60vw;
+  background-color:transparent;
+  top: 0;
+  left:0;
+  border:none;
+  outline: none;
 }
 
 /* Quizz list */

@@ -54,6 +54,16 @@ router
                 }
             );
         })
+    .get('/recherche/:searchtxt',
+        (req, res) => {
+            db.all(
+                "select * from quizzes WHERE name LIKE ?",
+                "%" + req.params.searchtxt + "%",
+                (err, row) => {
+                    res.json(row)
+                }
+            );
+        })
 
     .post('/users',
         (req, res) => {
