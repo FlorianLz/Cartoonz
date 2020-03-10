@@ -133,6 +133,7 @@ body{
 
 .log h2{
   color: #444343;
+  margin-bottom: 30px;
 }
 
 .log form{
@@ -154,7 +155,7 @@ body{
   border: none;
   border-radius: 10px;
   padding: 10px;
-  margin-bottom: 15px;
+  margin-bottom: 20px;
 }
 
 .buttonLog{
