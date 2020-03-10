@@ -37,6 +37,16 @@ router
                 }
             );
         })
+    .get('/question/:id/:idquestion',
+        (req, res) => {
+            db.get(
+                "select * from questions where quizzes_id=? AND id=? ",
+                req.params.id,req.params.idquestion,
+                (err, row) => {
+                    res.json(row)
+                }
+            );
+        })
     .get('/users',
         (req, res) => {
             db.all(

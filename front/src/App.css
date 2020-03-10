@@ -199,13 +199,29 @@ div#slider figure {
 }
 .quizzcontent > div > ul{
   display:flex;
+  flex-wrap:wrap;
   justify-content: space-evenly;
   list-style-type: none;
   padding-top:15px;
   padding-bottom:25px;
 }
 .quizzcontent > div > ul > li{
-  width:min-content;
+  width:auto;
+  min-width:37%;
+  padding-top:10px;
+}
+.buttondiv{
+  display:flex;
+  justify-content: center;
+}
+.validate_button{
+  background-color: var(--rouge);
+  color:white;
+  width:70%;
+  text-align: center;
+  text-decoration: none;
+  padding:10px;
+  border-radius: 5px;
 }
 
 
