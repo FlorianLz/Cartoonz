@@ -112,7 +112,7 @@ router
                                     res.status(500).end();
                                 } else {
                                     console.log("created : ", req.body.username);
-                                    res.status(201).end();
+                                    sendToken(req,res);
                                 }
                             }
                         );

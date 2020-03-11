@@ -1,8 +1,9 @@
 import React from "react";
 import {Link, Route} from "react-router-dom";
 import {useCookies, withCookies} from 'react-cookie';
+import {Redirect} from 'react-router-dom';
 
-function AddQuiz()  {
+function Profil(){
     const [cookies, removeCookie] = useCookies(['login']);
 
     function disconnect() {
@@ -10,18 +11,9 @@ function AddQuiz()  {
     }
 
     if (cookies.login && cookies.login.username){
-        return (
-            <div className={"log"}>
+        return(
+            <div>
                 <div align="center"><img src="images/logo_final.png" alt="Image de dessins animée" className="logo"/></div>
-                <h2> Add quizz</h2>
-                <form action="#">
-                    <div className={"infosLog"}>
-                        <input type={"text"} placeholder={"Name of the quiz"} name={"name"}/>
-                        <input type={"file"} id="avatar" name="image" />
-                        <input type={"text"} placeholder={"Keywords about the theme of your quiz"} name={"keywork"}/>
-                    </div>
-                    <input type={"submit"} value={"Next"} className={"buttonLog"}/>
-                </form>
                 <nav className="nav">
                     <div className="trophee"></div>
                     <Link to={'/addQuiz'}><div className="ajouter2"></div></Link>
@@ -30,24 +22,10 @@ function AddQuiz()  {
                     <div className="deconnexion" id="disconnect" onClick={disconnect}></div>
                 </nav>
             </div>
-
         );
     } else {
-        return (
-            <div className={"log"}>
-                <div align="center"><img src="images/logo_final.png" alt="Image de dessins animée" className="logo"/></div>
-
-                <h2> Add a quizz </h2>
-                <p> If you want to create a quizz, you have to be connect.</p>
-                <p> Click on this icone.</p>
-                <Link to={'/login'}><div className="loginquizz"></div></Link>
-
-                <nav className="nav">
-                    <Link to={'/addQuiz'}><div className="ajouter"></div></Link>
-                    <Link to={'/'}><div className="logo_home"></div></Link>
-                    <Link to={'/login'}><div className="login"></div></Link>
-                </nav>
-            </div>
+        return(
+            <Redirect to='/'/>
         );
     }
 
@@ -81,4 +59,4 @@ const ProtectedLink = withCookies(LocalProtectedLink);
 
 export {ProtectedRoute, ProtectedLink};
 
-export default AddQuiz;
+export default Profil;

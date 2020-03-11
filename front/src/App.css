@@ -61,7 +61,7 @@ body{
 }
 
 .login {
-  background-image:url('images/login.svg');
+  background-image:url('images/connexion.png');
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center;
@@ -369,6 +369,7 @@ div#slider figure {
   color: #444343;
   margin-top: 80px;
   margin-bottom: 30px;
+  font-size: 28px;
 }
 
 .log form{
@@ -378,7 +379,8 @@ div#slider figure {
 }
 
 .log p{
-  margin-top: 30px;
+  margin-top: 40px;
+  font-size: 18px;
 }
 
 .infosLog{
@@ -388,9 +390,10 @@ div#slider figure {
 
 .infosLog input{
   border: none;
-  border-radius: 10px;
-  padding: 10px;
-  margin-bottom: 20px;
+  border-radius: 12px;
+  padding: 12px;
+  margin-bottom: 24px;
+  font-size: 18px;
 }
 
 .buttonLog{
@@ -401,6 +404,8 @@ div#slider figure {
   color: white;
   background-color: #C26573;
   width: 60%;
+  font-size: 16px;
+  margin-top: 15px;
 }
 
 .lienLog{
@@ -453,10 +458,26 @@ div#slider figure {
   height:6vh;
 }
 .deconnexion {
-  background-image:url('images/deconnexion.svg');
+  background-image:url('images/deconnexion.png');
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center;
   width:20vw;
   height:6vh;
+}
+
+
+
+/*---------------------
+-----------------------
+   Add quiz
+-----------------------
+---------------------*/
+.loginquizz{
+  margin-top: 20px;
+  background-image: url('images/connexion.png');
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  height: 20vh;
 }
