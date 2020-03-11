@@ -85,7 +85,6 @@ router
                 }
             );
         })
-
     .get('/soluce/:idquizz/:idquestion',
         (req, res) => {
             db.all(
@@ -96,16 +95,6 @@ router
                 }
             );
         })
-
-    .post('/users',
-        (req, res) => {
-            if(req.body.password == req.body.passwordconfirm){
-                console.log("good");
-                db.run("insert into users(username,password,avatar,admin) values(?,?,?,?)", [req.body.username,req.body.password,req.body.avatar,'0']);
-                res.redirect(303, '/');
-            }
-        })
-
     .patch('/users/:id',
         (req, res) => {
             db.run("update persons set username=? where id=?",[req.body,req.params.id]);

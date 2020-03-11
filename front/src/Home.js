@@ -6,7 +6,7 @@ import {Link} from "react-router-dom";
 
 function Home()  {
     const [cookies] = useCookies(['login']);
-    const msg = cookies.login && cookies.login.name ? "connectio OK" : "no connection";
+    const msg = cookies.login && cookies.login.username ? "connection OK" : "no connection";
     const [quizzes, setQuizzes] = useState([]);
 
     let jsxQuizzes = quizzes.map(p => <QuizzThumbnail

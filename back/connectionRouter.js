@@ -91,7 +91,7 @@ router
     .post("/signin", checkBodyUser, (req, res, next) => {
         checkUserPassword(req.body, res, next)
     }, sendToken)
-    .post("/signUp", checkBodyUser, (req, res) => {
+    .post("/signup", checkBodyUser, (req, res) => {
         console.log("signup....");
         db.get(
             'select 1 from users where username=?', req.body.username,
