@@ -265,6 +265,45 @@ div#slider figure {
   border-radius: 5px;
 }
 
+/*---------------------
+-----------------------
+        Add quizz
+-----------------------
+---------------------*/
+.Rep{
+  margin-top: 200px;
+}
+.addRep{
+  display: flex;
+  justify-content:space-around;
+  align-items:center;
+  margin-top: 10px;
+}
+.addRep div div{
+  margin-bottom:10px;
+}
+.Rep form{
+  width: 100%;
+}
+.coche{
+  display: flex;
+  background-color: red;
+}
+.addRep div div {
+  display: flex;
+}
+[type="checkbox"]{
+  margin-top:10px;
+}
+.addRep div div [type="text"]{
+  width:150px;
+}
+.score{
+  width: 20%;
+}
+.quest{
+  width:90%;
+}
 
 
 
