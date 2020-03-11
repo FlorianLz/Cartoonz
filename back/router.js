@@ -85,11 +85,21 @@ router
                 }
             );
         })
-    .get('/soluce/:idquizz/:idquestion',
+    .get('/soluce/:idquestion/:idreponse',
         (req, res) => {
             db.all(
-                "select solution from answers where questions_id=? AND id=? ",
-                req.params.idquizz,req.params.idquestion,
+                "select solution from answers WHERE questions_id=? AND id=? ",
+                req.params.idquestion,req.params.idreponse,
+                (err, row) => {
+                    res.json(row)
+                }
+            );
+        })
+    .get('/nbsoluce/:idquestion',
+        (req, res) => {
+            db.all(
+                "select COUNT() AS count from answers where questions_id=? AND solution='1'",
+                req.params.idquestion,
                 (err, row) => {
                     res.json(row)
                 }
