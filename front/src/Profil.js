@@ -2,6 +2,7 @@ import React from "react";
 import {Link, Route} from "react-router-dom";
 import {useCookies, withCookies} from 'react-cookie';
 import {Redirect} from 'react-router-dom';
+import axios from "axios";
 
 function Profil(){
     const [cookies, removeCookie] = useCookies(['login']);
@@ -10,10 +11,16 @@ function Profil(){
         removeCookie('login');
     }
 
+    async function recupererInfos(){
+        const perso = cookies.login.username;
+    }
+
     if (cookies.login && cookies.login.username){
+        console.log(cookies.login.username);
         return(
             <div>
                 <div align="center"><img src="images/logo_final.png" alt="Image de dessins animée" className="logo"/></div>
+                <h2> This is the profil of </h2>
                 <nav className="nav">
                     <Link to={'/addQuiz'}><div className="ajouter2"></div></Link>
                     <div className="trophee"></div>

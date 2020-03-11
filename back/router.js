@@ -65,6 +65,16 @@ router
                 }
             );
         })
+    .get('/users/name/:username',
+        (req, res) => {
+            db.get(
+                "select * from users where username=?",
+                req.params.username,
+                (err, row) => {
+                    res.json(row)
+                }
+            );
+        })
     .get('/recherche/:searchtxt',
         (req, res) => {
             db.all(
