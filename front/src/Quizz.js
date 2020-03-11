@@ -11,6 +11,7 @@ export default function Quizz(props)  {
     const [nbQuestions, setNbQuestions] = useState([]);
     const [progression, setProgression] = useState(0);
     const [numQuestion, setNumQuestion] = useState(1);
+    const [repChecked, setChecked] = useState([]);
     const [quizz_name, setQuizzName] = useState([]);
     let idquizz = props.match.params.id;
 
@@ -25,18 +26,38 @@ export default function Quizz(props)  {
         id = {p.id}
         sentence={p.sentence}
         picture={p.picture_url}
+        checked={e => checked(e, p.id)}
     />);
 
     function next(){
         if(progression < nbQuestions-1){
-            let suivant=questions[progression+1].id;
-            setNumQuestion(suivant);
-            setProgression(progression+1);
-            setQuestion(questions[progression+1]);
-            afficherQuestion(suivant);
-            getAnswers(suivant);
+            //let suivant=questions[progression+1].id;
+            //setNumQuestion(suivant);
+            //setProgression(progression+1);
+            //setQuestion(questions[progression+1]);
+            //afficherQuestion(suivant);
+            //getAnswers(suivant);
+            repChecked.forEach((item, index)=>{
+                console.log(item);
+                getSoluce(item, questions[progression].id);
+            });
+            console.log('réponses sélectionnées : ',repChecked);
         }
 
+    }
+
+    function checked(e, i){
+        if(repChecked.indexOf(i) != -1){
+            console.log('supprimé', i);
+            repChecked.splice(repChecked.indexOf(i),1 );
+            console.log(repChecked);
+            e.target.classList.remove("checked");
+
+        }else{
+            repChecked.push(i);
+            console.log('ajouté', i);
+            e.target.classList.add("checked");
+        }
     }
 
     async function getQuestions() {
@@ -51,6 +72,11 @@ export default function Quizz(props)  {
     async function getAnswers(varr) {
         const data = (await axios.get('http://localhost:8000/answer/'+varr)).data;
         setAnswers(data);
+    }
+    async function getSoluce(idq, progression) {
+        const data = (await axios.get('http://localhost:8000/soluce/'+progression+'/'+idq)).data;
+        console.log(data[0].solution);
+
     }
     async function afficherQuestion(varr) {
         const data = (await axios.get('http://localhost:8000/question/'+idquizz+'/'+ varr)).data;

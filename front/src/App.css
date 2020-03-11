@@ -264,6 +264,9 @@ div#slider figure {
   padding:10px;
   border-radius: 5px;
 }
+.checked{
+  color: green;
+}
 
 /*---------------------
 -----------------------

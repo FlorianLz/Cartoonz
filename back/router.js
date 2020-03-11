@@ -86,6 +86,17 @@ router
             );
         })
 
+    .get('/soluce/:idquizz/:idquestion',
+        (req, res) => {
+            db.all(
+                "select solution from answers where questions_id=? AND id=? ",
+                req.params.idquizz,req.params.idquestion,
+                (err, row) => {
+                    res.json(row)
+                }
+            );
+        })
+
     .post('/users',
         (req, res) => {
             if(req.body.password == req.body.passwordconfirm){
