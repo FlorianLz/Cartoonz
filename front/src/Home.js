@@ -39,11 +39,11 @@ function Home()  {
 
             <div id="slider">
                 <figure>
-                    <img src="images/Carousel.png" alt="img1"/>
-                    <img src="images/Carousel.png" alt="img2"/>
-                    <img src="images/Carousel.png" alt="img3"/>
-                    <img src="images/Carousel.png" alt="img4"/>
-                    <img src="images/Carousel.png" alt="img5"/>
+                    <img src="images/images_dessins_animes/totallyspies.jpg" alt="img2"/>
+                    <img src="images/images_dessins_animes/simpsons.jpg" alt="img3"/>
+                    <img src="images/images_dessins_animes/pokemon.png" alt="img1"/>
+                    <img src="images/images_dessins_animes/doraexploratrice.jpg" alt="img4"/>
+                    <img src="images/images_dessins_animes/minijusticiers.jpg" alt="img5"/>
                 </figure>
             </div>
             <form className={"formsearch"} onSubmit={e=>search(e)}>
