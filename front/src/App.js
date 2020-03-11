@@ -9,6 +9,8 @@ import About from "./About.js";
 import Login, {ProtectedRoute} from "./Login.js";
 import Register from "./Register.js";
 import Quizz from "./Quizz.js";
+import addQuest from "./addQuestion.js";
+import addQuiz from "./addQuizz.js";
 
 function App()  {
     return (
@@ -20,6 +22,8 @@ function App()  {
                     <Route exact={true} path="/login" component={Login} />
                     <Route exact={true} path="/register" component={Register} />
                     <Route exact={true} path="/quizz/:id" component={Quizz}/>
+                    <Route exact={true} path="/addQuiz" component={addQuiz} />
+                    <Route exact={true} path="/addQuest" component={addQuest} />
                     <Route path="*" component={() => <p>Page Not Found</p>} />
                 </Switch>
             </div>
