@@ -6,7 +6,6 @@ import {Link, Route} from "react-router-dom";
 
 function Home()  {
     const [cookies, removeCookie] = useCookies(['login']);
-    const msg = cookies.login && cookies.login.username ? "connection OK" : "no connection";
     const [quizzes, setQuizzes] = useState([]);
 
     function disconnect() {
@@ -39,7 +38,6 @@ function Home()  {
     if (cookies.login && cookies.login.username) {
         return (
             <div>
-                <p> {msg}</p>
                 <div align="center"><img src="images/logo_final.png" alt="Image de dessins animée" className="logo"/></div>
 
                 <div id="slider">
@@ -69,7 +67,6 @@ function Home()  {
     }
     return (
         <div>
-            <p> {msg}</p>
             <div align="center"><img src="images/logo_final.png" alt="Image de dessins animée" className="logo"/></div>
 
             <div id="slider">

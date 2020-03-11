@@ -4,6 +4,7 @@ import Question from "./Question";
 import Answers from "./Answers";
 import {Link, Redirect} from "react-router-dom";
 import EndQuizz from "./EndQuizz";
+import {useCookies, withCookies} from 'react-cookie';
 
 export default function Quizz(props)  {
     const [questions, setQuestions] = useState([]);
@@ -19,6 +20,7 @@ export default function Quizz(props)  {
     const [quizz_name, setQuizzName] = useState([]);
     const [quizz_pic, setQuizzPic] = useState([]);
     let idquizz = props.match.params.id;
+    const [cookies, removeCookie] = useCookies(['login']);
 
     /*let jsxQuestion = <Question
         id = {question.id}
@@ -26,6 +28,10 @@ export default function Quizz(props)  {
         num_question={numQuestion}
         progression={progression+1}
     />;*/
+
+    function disconnect() {
+        removeCookie('login');
+    }
 
     let jsxAnswers = answers.map(p => <Answers
         id = {p.id}
@@ -160,34 +166,56 @@ export default function Quizz(props)  {
     },[]);
 
     if(progression >= nbQuestions){
-        return (
-            <div>
-                <EndQuizz
-                    score = {score}
-                    nomquizz={quizz_name}
-                    picture={quizz_pic}
-                />
-                <nav className="nav"><div className="ajouter"></div>
-                    <Link to={'/'}><div className="logo_home"></div></Link>
-                    <Link to={'/login'}><div className="login"></div></Link>
-                </nav>
-            </div>
-        );
+        if(cookies.login && cookies.login.username){
+            return(
+                <div>
+                    <div align="center"><img src="../images/logo_final.png" alt="Image de dessins animée" className="logo"/></div>
+                    <EndQuizz
+                        score = {score}
+                        nomquizz={quizz_name}
+                        picture={quizz_pic}
+                    />
+                    <nav className="nav">
+                        <Link to={'/addQuiz'}><div className="ajouter2"></div></Link>
+                        <div className="trophee"></div>
+                        <Link to={'/'}><div className="logo_home2"></div></Link>
+                        <Link to={'/profil'}><div className="profil"></div></Link>
+                        <div className="deconnexion" id="disconnect" onClick={disconnect}></div>
+                    </nav>
+                </div>
+            );
+        } else {
+            return (
+                <div>
+                    <div align="center"><img src="../images/logo_final.png" alt="Image de dessins animée" className="logo"/></div>
+                    <EndQuizz
+                        score = {score}
+                        nomquizz={quizz_name}
+                        picture={quizz_pic}
+                    />
+                    <nav className="nav"><div className="ajouter"></div>
+                        <Link to={'/'}><div className="logo_home"></div></Link>
+                        <Link to={'/login'}><div className="login"></div></Link>
+                    </nav>
+                </div>
+            );
+        }
     }
     return (
         <div className={'quizzcontent'}>
             <div align="center"><img src="../images/logo_final.png" alt="Image de dessins animée" className="logo"/></div>
-            <h4>{quizz_name}</h4>
-            <p>{progression+1} / {nbQuestions} questions</p>
+            <h2 className="quizzName">{quizz_name}</h2>
+            <p className="scorePartie">Your score : {score}</p>
+            <p className="infosQuestion"> <span className="nbQuestion">Question {progression+1} / {nbQuestions} </span>for {question.score} points </p>
             <h3>{question.sentence}</h3>
             <ul>
                 {jsxAnswers}
             </ul>
-            <div className={"buttondiv"}><div className={"buttondiv validate_button"} onClick={e => next()}>Valider</div></div>
-            Score total : {score}
-            <br />
-            Nombre de solutions : {nbSoluce}<br />
-            Question vaut : {question.score}
+            <div className={"buttondiv"}>
+                <div className={"buttondiv validate_button"} onClick={e => next()}>Validate</div>
+            </div>
+
+
         </div>
 
     );
