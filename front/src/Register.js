@@ -1,6 +1,6 @@
 import React from "react"
 import axios from 'axios';
-import {Route} from 'react-router-dom';
+import {Redirect, Route} from 'react-router-dom';
 import {Link} from 'react-router-dom';
 import {useCookies, withCookies} from 'react-cookie';
 
@@ -74,7 +74,9 @@ function Register()  {
     }
 
     if (cookies.login && cookies.login.username) {
-        return <button id="disconnect" onClick={disconnect}>disconnect</button>;
+        return (
+            <Redirect to='/'/>
+        );
     }
     return <FormRegister onSignin={onSignin} onSignup={onSignup} usernameRef={usernameRef} passwordRef={passwordRef}/>
 }
