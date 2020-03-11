@@ -68,8 +68,8 @@ router
     .get('/recherche/:searchtxt',
         (req, res) => {
             db.all(
-                "select * from quizzes WHERE name LIKE ?",
-                "%" + req.params.searchtxt + "%",
+                "select * from quizzes WHERE name LIKE ? OR keywords LIKE ?",
+                "%" + req.params.searchtxt + "%","%" + req.params.searchtxt + "%",
                 (err, row) => {
                     res.json(row)
                 }
