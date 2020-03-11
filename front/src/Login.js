@@ -3,6 +3,7 @@ import axios from "axios";
 import {Route} from 'react-router-dom';
 import {Link} from 'react-router-dom';
 import {useCookies, withCookies} from 'react-cookie';
+import {Redirect} from 'react-router-dom';
 
 function FormLogin(props)  {
 
@@ -19,7 +20,8 @@ function FormLogin(props)  {
                 <input type={"submit"} value={"login"} className={"buttonLog"}/>
             </form>
             <p> Not registered ? Click <a href={"./register"} className={"lienLog"}> here </a> to register. </p>
-            <nav className="nav"><div className={"ajouter"} />
+            <nav className="nav">
+                <Link to={'/addQuiz'}><div className="ajouter"></div></Link>
                 <Link to={'/'}><div className="logo_home"/></Link>
                 <Link to={'/login'}><div className="login"/></Link>
             </nav>
@@ -45,7 +47,7 @@ function Login() {
         };
         try {
             const p = (await axios.post('http://localhost:8000/signup', user));
-            if (p.status === 201) {
+            if (p.status === 200) {
                 user.token = p.data.token;
                 setCookie('login', user, '/');
             }
@@ -66,6 +68,7 @@ function Login() {
                 user.token = p.data.token;
                 setCookie('login', user, '/');
             }
+
         } catch (err) {
             console.error(err)
         }
@@ -73,10 +76,7 @@ function Login() {
 
     if (cookies.login && cookies.login.username) {
         return (
-            <div>
-                <button id="disconnect" onClick={disconnect}>disconnect</button>
-                <p> coucou </p>
-            </div>
+            <Redirect to='/'/>
         );
     }
     return <FormLogin onSignin={onSignin} onSignup={onSignup} usernameRef={usernameRef} passwordRef={passwordRef}/>

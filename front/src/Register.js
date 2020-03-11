@@ -13,14 +13,15 @@ function FormRegister(props){
                 <div className={"infosLog"}>
                     <input type={"text"} id={"username"} ref={props.usernameRef} placeholder={"Username"} name={"name"}/>
                     <input type={"password"} ref={props.passwordRef} placeholder={"Password"} name={"password"}/>
-                    <input type={"password"} ref={props.passwordConf} placeholder={"Confirm password"} name={"confirmpassword"}/>
+                    <input type={"password"} ref={props.password2Ref} placeholder={"Confirm password"} name={"confirmpassword"}/>
                     <input type={"hidden"} name={"avatar"} value={"coucou"}/>
                 </div>
                 <input type={"submit"} value={"create"} className={"buttonLog"}/>
                 <p id={"sentencepwd"}> WARNONG : it's not the same password. </p>
             </form>
             <p> Already registered ? Click <a href={"./login"} className={"lienLog"}> here </a> to sign in. </p>
-            <nav className="nav"><div className="ajouter"></div>
+            <nav className="nav">
+                <Link to={'/addQuiz'}><div className="ajouter"></div></Link>
                 <Link to={'/'}><div className="logo_home"></div></Link>
                 <Link to={'/login'}><div className="login"></div></Link>
             </nav>
