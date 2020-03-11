@@ -3,6 +3,7 @@ import axios from "axios";
 import Question from "./Question";
 import Answers from "./Answers";
 import {Link, Redirect} from "react-router-dom";
+import EndQuizz from "./EndQuizz";
 
 export default function Quizz(props)  {
     const [questions, setQuestions] = useState([]);
@@ -16,6 +17,7 @@ export default function Quizz(props)  {
     const [nbSoluce, setNbSoluce] = useState(0);
     const [score, setScore] = useState(0);
     const [quizz_name, setQuizzName] = useState([]);
+    const [quizz_pic, setQuizzPic] = useState([]);
     let idquizz = props.match.params.id;
 
     /*let jsxQuestion = <Question
@@ -49,21 +51,23 @@ export default function Quizz(props)  {
         if(progression < nbQuestions-1){
             let suivant=questions[progression+1].id;
             setNumQuestion(suivant);
-            setProgression(progression+1);
             setQuestion(questions[progression+1]);
             setNbSoluce(0);
             repChecked.forEach((item, index)=>{
-                document.getElementById('buttonanswer'+item).classList.remove('checked');
+                if(document.getElementById('buttonanswer'+item)){
+                    document.getElementById('buttonanswer'+item).classList.remove('checked');
+                }
+                if(document.getElementById('buttonanswerimg'+item)){
+                    document.getElementById('buttonanswerimg'+item).classList.remove('checkedimg');
+                }
             });
             setChecked([]);
             setPerdu([]);
             afficherQuestion(suivant);
             getAnswers(suivant);
 
-        }else{
-            console.log('Termine ! ', score);
-
         }
+        setProgression(progression+1);
 
     }
 
@@ -92,11 +96,24 @@ export default function Quizz(props)  {
         if(repChecked.indexOf(i) != -1){
             repChecked.splice(repChecked.indexOf(i),1 );
             console.log(repChecked);
-            e.target.classList.remove("checked");
+            //e.target.classList.remove("checked");
+            if(document.getElementById('buttonanswer'+i)){
+                document.getElementById('buttonanswer'+i).classList.remove('checked');
+            }
+            if(document.getElementById('buttonanswerimg'+i)){
+                document.getElementById('buttonanswerimg'+i).classList.remove('checkedimg');
+            }
+
         }else{
             repChecked.push(i);
             console.log(repChecked);
-            e.target.classList.add("checked");
+            //e.target.classList.add("checked");
+            if(document.getElementById('buttonanswer'+i)){
+                document.getElementById('buttonanswer'+i).classList.add('checked');
+            }
+            if(document.getElementById('buttonanswerimg'+i)){
+                document.getElementById('buttonanswerimg'+i).classList.add('checkedimg');
+            }
         }
     }
 
@@ -133,6 +150,7 @@ export default function Quizz(props)  {
     async function getQuizzes() {
         const data = (await axios.get('http://localhost:8000/quizz/'+idquizz)).data;
         setQuizzName(data.name);
+        setQuizzPic(data.picture_url);
     }
 
     useEffect(() => {
@@ -141,6 +159,21 @@ export default function Quizz(props)  {
         getAnswers();
     },[]);
 
+    if(progression >= nbQuestions){
+        return (
+            <div>
+                <EndQuizz
+                    score = {score}
+                    nomquizz={quizz_name}
+                    picture={quizz_pic}
+                />
+                <nav className="nav"><div className="ajouter"></div>
+                    <Link to={'/'}><div className="logo_home"></div></Link>
+                    <Link to={'/login'}><div className="login"></div></Link>
+                </nav>
+            </div>
+        );
+    }
     return (
         <div className={'quizzcontent'}>
             <div align="center"><img src="../images/logo_final.png" alt="Image de dessins animée" className="logo"/></div>
@@ -155,10 +188,6 @@ export default function Quizz(props)  {
             <br />
             Nombre de solutions : {nbSoluce}<br />
             Question vaut : {question.score}
-            <nav className="nav"><div className="ajouter"></div>
-                <Link to={'/'}><div className="logo_home"></div></Link>
-                <Link to={'/login'}><div className="login"></div></Link>
-            </nav>
         </div>
 
     );

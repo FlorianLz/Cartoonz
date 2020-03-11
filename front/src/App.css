@@ -225,8 +225,8 @@ div#slider figure {
 -----------------------
 ---------------------*/
 .imganswer{
-  width:20vw;
-  height:20vw;
+  width:40vw;
+  height:40vw;
 }
 .quizzcontent > h4{
   text-align: center;
@@ -242,6 +242,7 @@ div#slider figure {
   display:flex;
   flex-wrap:wrap;
   justify-content: space-evenly;
+  align-items: center;
   list-style-type: none;
   padding-top:15px;
   padding-bottom:25px;
@@ -249,6 +250,7 @@ div#slider figure {
 .quizzcontent > ul > li{
   width:90%;
   padding-top:10px;
+  text-align: center;
 }
 .buttondiv{
   display:flex;
@@ -271,6 +273,17 @@ div#slider figure {
   border-radius: 5px;
   text-align: center;
   padding: 10px;
+}
+.notcheckedimg{
+  filter: grayscale(1);
+  -webkit-filter: grayscale(1);
+}
+.checkedimg{
+  filter: none;
+  -webkit-filter: none
+}
+.li_img{
+  width:50%!important;
 }
 /*---------------------
 -----------------------
