@@ -68,8 +68,8 @@ router
     .get('/recherche/:searchtxt',
         (req, res) => {
             db.all(
-                "select * from quizzes WHERE name LIKE ?",
-                "%" + req.params.searchtxt + "%",
+                "select * from quizzes WHERE name LIKE ? OR keywords LIKE ?",
+                "%" + req.params.searchtxt + "%","%" + req.params.searchtxt + "%",
                 (err, row) => {
                     res.json(row)
                 }
@@ -85,7 +85,16 @@ router
                 }
             );
         })
-
+    .get('/soluce/:idquizz/:idquestion',
+        (req, res) => {
+            db.all(
+                "select solution from answers where questions_id=? AND id=? ",
+                req.params.idquizz,req.params.idquestion,
+                (err, row) => {
+                    res.json(row)
+                }
+            );
+        })
     .patch('/users/:id',
         (req, res) => {
             db.run("update persons set username=? where id=?",[req.body,req.params.id]);
