@@ -224,19 +224,36 @@ div#slider figure {
         Quizz page
 -----------------------
 ---------------------*/
+.quizzcontent{
+  width: 80%;
+  margin-left: auto;
+  margin-right: auto;
+}
 .imganswer{
   width:40vw;
   height:40vw;
 }
-.quizzcontent > h4{
-  text-align: center;
+.nbQuestion{
   color:var(--rouge);
+  text-transform: uppercase;
+}
+.infosQuestion{
+  margin-top: 30px;
+  font-size: 18px;
+}
+.scorePartie{
+  text-align: center;
+  font-size: 18px;
+}
+.quizzName{
+  text-align: center;
   text-transform: uppercase;
   padding-top:5px;
   padding-bottom:15px;
 }
 .quizzcontent > h3{
-  text-align: center;
+  margin-top: 10px;
+  font-size: 20px;
 }
 .quizzcontent > ul{
   display:flex;
@@ -259,14 +276,16 @@ div#slider figure {
 .validate_button{
   background-color: var(--rouge);
   color:white;
-  width:70%;
+  width:50%;
   text-align: center;
   text-decoration: none;
   padding:10px;
-  border-radius: 5px;
+  border-radius: 20px;
+  text-transform: uppercase;
 }
 .checked{
   background-color: var(--vert);
+  color: white;
 }
 .buttonanswer{
   border:1px solid black;
@@ -282,8 +301,38 @@ div#slider figure {
   filter: none;
   -webkit-filter: none
 }
+.imgfinquizz{
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width:50%;
+  margin-bottom: 30px;
+}
 .li_img{
   width:50%!important;
+}
+.sentencefinish{
+  width: 80%;
+  margin-top: 10px;
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+  font-size: 18px;
+}
+.sentencefinish link{
+  text-decoration: none;
+}
+.lienFinish{
+  text-decoration: none;
+  text-transform: uppercase;
+  color: var(--rouge);
+  font-weight: bold;
+}
+.scoreFinal{
+  color: var(--rouge);
+  font-weight: bold;
+  font-size: 20px;
+  text-transform: uppercase;
 }
 /*---------------------
 -----------------------
