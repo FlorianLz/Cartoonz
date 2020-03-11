@@ -473,11 +473,11 @@ div#slider figure {
    Add quiz
 -----------------------
 ---------------------*/
-.loginquizz{
+.connexioncouleur{
   margin-top: 20px;
-  background-image: url('images/connexion.png');
+  background-image:url('images/connexion_color.png');
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center;
-  height: 20vh;
+  height: 40vh;
 }

@@ -40,7 +40,7 @@ function AddQuiz()  {
                 <h2> Add a quizz </h2>
                 <p> If you want to create a quizz, you have to be connect.</p>
                 <p> Click on this icone.</p>
-                <Link to={'/login'}><div className="loginquizz"></div></Link>
+                <Link to={'/login'}><div className="connexioncouleur"></div></Link>
 
                 <nav className="nav">
                     <Link to={'/addQuiz'}><div className="ajouter"></div></Link>
