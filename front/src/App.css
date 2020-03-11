@@ -412,3 +412,51 @@ div#slider figure {
 #sentencepwd{
   display: none;
 }
+
+/*---------------------
+-----------------------
+   Barre nav connecté
+-----------------------
+---------------------*/
+
+.ajouter2 {
+  background-image:url('images/icon_ajouter.svg');
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  width:20vw;
+  height:6vh;
+}
+.trophee {
+  background-image:url('images/trophee.svg');
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  width:20vw;
+  height:6vh;
+}
+.logo_home2 {
+  background-image:url('images/logo_reduit.svg');
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  width:20vw;
+  height:8vh;
+  border-radius:100%;
+}
+.profil {
+  background-image:url('images/login.svg');
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  width:20vw;
+  height:6vh;
+}
+.deconnexion {
+  background-image:url('images/deconnexion.svg');
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  width:20vw;
+  height:6vh;
+}
