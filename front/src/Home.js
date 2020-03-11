@@ -35,6 +35,7 @@ function Home()  {
     useEffect(() => {
         getQuizzes()
     },[]);
+
     if (cookies.login && cookies.login.username) {
         return (
             <div>
@@ -59,8 +60,8 @@ function Home()  {
                     <div className="trophee"></div>
                     <Link to={'/addQuiz'}><div className="ajouter2"></div></Link>
                     <Link to={'/'}><div className="logo_home2"></div></Link>
-                    <Link to={'/login'}><div className="profil"></div></Link>
-                    <button id="disconnect" onClick={disconnect} className="deconnexion">disconnect</button>
+                    <Link to={'/profil'}><div className="profil"></div></Link>
+                    <div className="deconnexion" id="disconnect" onClick={disconnect}></div>
                 </nav>
 
             </div>
@@ -85,7 +86,8 @@ function Home()  {
                 <input type="submit" id="loupe" value=""/>
             </form>
             {jsxQuizzes}
-            <nav className="nav"><div className="ajouter"></div>
+            <nav className="nav">
+                <Link to={'/addQuiz'}><div className="ajouter"></div></Link>
                 <Link to={'/'}><div className="logo_home"></div></Link>
                 <Link to={'/login'}><div className="login"></div></Link>
             </nav>
