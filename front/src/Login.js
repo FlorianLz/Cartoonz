@@ -10,7 +10,7 @@ function FormLogin(props)  {
 
     return (
         <div className={"log"}>
-            <div align="center"><img src="images/logo_final.png" alt="Image de dessins animée" className="logo"/></div>
+            <div align="center"><img src="images/logo_final.png" alt="img_logo" className="logo"/></div>
 
             <h2> Sign in</h2>
             <form action="#" onSubmit={props.onSignin}>
@@ -29,13 +29,9 @@ function FormLogin(props)  {
 
 function Login() {
 
-    const [cookies, setCookie, removeCookie] = useCookies(['login']);
+    const [cookies, setCookie] = useCookies(['login']);
     const usernameRef = React.createRef();
     const passwordRef = React.createRef();
-
-    function disconnect() {
-        removeCookie('login');
-    }
 
     async function onSignup() {
         const user = {

@@ -15,6 +15,7 @@ function Home()  {
     }
 
     let jsxQuizzes = quizzes.map(p => <QuizzThumbnail
+        key = {p.id}
         id = {p.id}
         title={p.name}
         date={p.created_date}
@@ -40,7 +41,7 @@ function Home()  {
     if (cookies.login && cookies.login.username) {
         return (
             <div>
-                <div align="center"><img src="images/logo_final.png" alt="Image de dessins animée" className="logo"/></div>
+                <div align="center"><img src="images/logo_final.png" alt="img_logo" className="logo"/></div>
 
                 <div id="slider">
                     <figure>
@@ -62,7 +63,7 @@ function Home()  {
     }
     return (
         <div>
-            <div align="center"><img src="images/logo_final.png" alt="Image de dessins animée" className="logo"/></div>
+            <div align="center"><img src="images/logo_final.png" alt="img_logo" className="logo"/></div>
 
             <div id="slider">
                 <figure>

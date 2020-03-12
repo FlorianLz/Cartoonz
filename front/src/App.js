@@ -1,12 +1,10 @@
-import logo from './logo.svg';
 import './App.css';
 
-import React, {Component} from "react";
+import React from "react";
 import {BrowserRouter, Switch, Route} from "react-router-dom";
 
 import Home from "./Home.js";
-import About from "./About.js";
-import Login, {ProtectedRoute} from "./Login.js";
+import Login from "./Login.js";
 import Register from "./Register.js";
 import Quizz from "./Quizz.js";
 import AddQuest from "./addQuestion.js";
@@ -20,7 +18,6 @@ function App()  {
             <div>
                 <Switch>
                     <Route exact={true} path="/" component={Home} />
-                    <Route exact={true} path="/about" component={About} />
                     <Route exact={true} path="/login" component={Login} />
                     <Route exact={true} path="/register" component={Register} />
                     <Route exact={true} path="/quizz/:id" component={Quizz}/>

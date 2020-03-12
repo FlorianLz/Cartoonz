@@ -35,7 +35,7 @@ function Profil(){
     if (cookies.login && cookies.login.username){
         return(
             <div className={"log"}>
-                <div align="center"><img src="images/logo_final.png" alt="Image de dessins animée" className="logo"/></div>
+                <div align="center"><img src="images/logo_final.png" alt="img_logo" className="logo"/></div>
                 <h2> My Profil </h2>
                 {jsxInfos}
                 <nav className="nav">

@@ -15,6 +15,7 @@ function Leaderboard()  {
     }
 
     let jsxScore = score.map((p,i) => <LeaderboardThumbnail
+        key = {p.id}
         username = {p.username}
         score = {p.score}
         position  = {i}
@@ -46,7 +47,7 @@ function Leaderboard()  {
 
     return (
         <div className={"lead"}>
-            <div align="center"><img src="images/logo_final.png" alt="Image de dessins animée" className="logo"/></div>
+            <div align="center"><img src="images/logo_final.png" alt="img_logo" className="logo"/></div>
             <h2> Leaderboard</h2>
             {jsxScore}
             {jsxMyscore}
