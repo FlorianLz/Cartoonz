@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from "react";
+import React from "react";
 
 export default function Answer(props)  {
     let picture=[];
@@ -12,7 +12,5 @@ export default function Answer(props)  {
             <li><div id={'buttonanswer'+props.id} className={'buttonanswer'} onClick={props.checked}>{props.sentence}{picture}</div></li>
         );
     }
-
-
 
 }

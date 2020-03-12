@@ -1,10 +1,8 @@
 import React, {useEffect, useState} from "react";
 import axios from "axios";
-import Question from "./Question";
 import Answers from "./Answers";
-import {Link, Redirect} from "react-router-dom";
 import EndQuizz from "./EndQuizz";
-import {useCookies, withCookies} from 'react-cookie';
+import {useCookies} from 'react-cookie';
 import Menu from "./Menu";
 import MenuConnected from "./MenuConnected";
 
@@ -81,12 +79,12 @@ export default function Quizz(props)  {
 
     function aGagne(){
         console.log('perdulength : )',perdu.length);
-        if(perdu.length == repChecked.length){
+        if(perdu.length === repChecked.length){
             if(perdu.indexOf(0) != -1){
                 console.log('Dommage');
                 suivant();
             }else{
-                if(perdu.length == nbSoluce){
+                if(perdu.length === nbSoluce){
                     console.log('Bien joué !');
                     console.log(question.score + 'pts');
                     //setScore(score + question.score);
@@ -142,7 +140,7 @@ export default function Quizz(props)  {
         const data = (await axios.get('http://localhost:8000/soluce/'+idq+'/'+idr)).data;
         console.log(data);
         setPerdu(perdu.push(data[0].solution));
-        if(perdu.length == repChecked.length){
+        if(perdu.length === repChecked.length){
             aGagne();
         }
     }

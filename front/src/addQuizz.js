@@ -56,7 +56,7 @@ function AddQuiz()  {
         if (cookies.login && cookies.login.username){
             return (
                 <div className={"log"}>
-                    <div align="center"><img src="images/logo_final.png" alt="Image de dessins animée" className="logo"/></div>
+                    <div align="center"><img src="images/logo_final.png" alt="img_logo" className="logo"/></div>
                     <h2> Add a quizz</h2>
                     <form onSubmit={e => creation(e)}>
                         <div className={"infosLog"}>
@@ -73,7 +73,7 @@ function AddQuiz()  {
         } else {
             return (
                 <div className={"log"}>
-                    <div align="center"><img src="images/logo_final.png" alt="Image de dessins animée" className="logo"/></div>
+                    <div align="center"><img src="images/logo_final.png" alt="img_logo" className="logo"/></div>
 
                     <h2> Add a quizz </h2>
                     <p> If you want to create a quizz, you have to be connect.</p>
