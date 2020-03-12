@@ -1,4 +1,4 @@
-import React from "react"
+import React from "react";
 import axios from 'axios';
 import {Redirect, Route} from 'react-router-dom';
 import {Link} from 'react-router-dom';
@@ -44,7 +44,7 @@ function Register()  {
         };
         try {
             const p = (await axios.post('http://localhost:8000/signup', user));
-            if (p.status === 201) {
+            if (p.status === 200) {
                 user.token = p.data.token;
                 setCookie('login', user, '/');
             }
