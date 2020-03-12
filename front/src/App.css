@@ -617,21 +617,21 @@ div#slider figure {
 .lead .divlead >div:nth-child(3){
   width:26%;
 }
-.lead .colorgold {
+.lead .color0 {
   background: gold;
   padding: 5px;
   color: white;
   font-weight: bold;
   font-family: 'SailecMedium';
 }
-.lead .colorsilver {
+.lead .color1{
   background: silver;
   padding: 5px;
   color: white;
   font-weight: bold;
   font-family: 'SailecMedium';
 }
-.lead .colorbronze {
+.lead .color2 {
   background: #614e1a;
   padding: 5px;
   color: white;
@@ -647,4 +647,27 @@ div#slider figure {
   margin-top: 15px;
   font-size: 20px;
   font-family: 'SailecMedium';
+}
+
+
+/*---------------------
+-----------------------
+   Fin quiz
+-----------------------
+---------------------*/
+.textFinal{
+  text-align: center;
+  width: 80%;
+  margin-left: auto;
+  margin-right: auto;
+}
+.linkHome{
+  text-decoration: none;
+  text-transform: uppercase;
+  color: var(--rouge);
+  font-weight: bold;
+  display: inline-block;
+}
+.nameQuiz{
+  font-family: 'Multicolor';
 }
