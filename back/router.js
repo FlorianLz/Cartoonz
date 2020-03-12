@@ -28,6 +28,16 @@ router
                 }
             );
         })
+    .get('/idquizz/:quizzname',
+        (req, res) => {
+            db.get(
+                "select id from quizzes where name=?",
+                req.params.quizzname,
+                (err, row) => {
+                    res.json(row)
+                }
+            );
+        })
     .get('/question/:id',
         (req, res) => {
             db.all(
@@ -43,6 +53,15 @@ router
             db.get(
                 "select * from questions where quizzes_id=? AND id=? ",
                 req.params.id,req.params.idquestion,
+                (err, row) => {
+                    res.json(row)
+                }
+            );
+        })
+    .get('/dernierid',
+        (req, res) => {
+            db.all(
+                "select id from questions ORDER BY id DESC LIMIT 1",
                 (err, row) => {
                     res.json(row)
                 }
@@ -140,6 +159,32 @@ router
                         res.status(500).end();
                     } else {
                         console.log("created : ", req.body.name);
+                    }
+                }
+            );
+        })
+    .post('/addQuestion/:idquizz',
+        (req, res) => {
+            db.run('insert into questions(sentence,score,quizzes_id) values(?,?,?)', [req.body.question, req.body.score,req.body.idquizz],
+                (err) => {
+                    if (err) {
+                        console.log("err :: ", err);
+                        res.status(500).end();
+                    } else {
+                        console.log("created : ", req.body.question);
+                    }
+                }
+            );
+        })
+    .post('/addAnswer/',
+        (req, res) => {
+            db.run('insert into answers(sentence,solution,questions_id) values(?,?,?)', [req.body.reponse, req.body.solucereponse,req.body.idquestion],
+                (err) => {
+                    if (err) {
+                        console.log("err :: ", err);
+                        res.status(500).end();
+                    } else {
+                        console.log("created : ", req.body.question);
                     }
                 }
             );

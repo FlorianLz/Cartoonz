@@ -347,17 +347,11 @@ div#slider figure {
         Add quizz
 -----------------------
 ---------------------*/
-.Rep{
-  margin-top: 200px;
-}
 .addRep{
   display: flex;
   justify-content:space-around;
   align-items:center;
   margin-top: 10px;
-}
-.addRep div div{
-  margin-bottom:10px;
 }
 .Rep form{
   width: 100%;
@@ -368,9 +362,7 @@ div#slider figure {
 }
 .addRep div div {
   display: flex;
-}
-[type="checkbox"]{
-  margin-top:10px;
+  align-items: center;
 }
 .addRep div div [type="text"]{
   width:150px;
@@ -380,6 +372,11 @@ div#slider figure {
 }
 .quest{
   width:90%;
+}
+.endRep > h2{
+  margin-top:80px;
+  text-align: center;
+  padding-bottom:50px;
 }
 
 
