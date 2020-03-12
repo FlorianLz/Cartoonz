@@ -6,6 +6,7 @@ function AddQuest(props)  {
     let nomQuizz=props.match.params.nomquizz;
     const [questActuelle,setQuestActuelle] = useState(1);
     const [idQuizz,setIdQuizz] = useState(0);
+    const [imgQuizz,setImgQuizz] = useState('');
     const [termine, setTermine] = useState(0);
 
     function gBox(nbCheck){
@@ -76,6 +77,10 @@ function AddQuest(props)  {
         const data = (await axios.get('http://localhost:8000/idquizz/'+nomQuizz)).data;
         setIdQuizz(data.id);
     }
+    async function getImgQuizz() {
+        const data = (await axios.get('http://localhost:8000/imgquizz/'+nomQuizz)).data;
+        setImgQuizz(data.picture_url);
+    }
 
     useEffect(() => {
         getIdQuizz();
@@ -111,7 +116,7 @@ function AddQuest(props)  {
 
     if (termine === 1){
         return(
-            <FinAjoutQuizz />
+            <FinAjoutQuizz idquizz={idQuizz} nomquizz={nomQuizz} imgquizz={imgQuizz} />
         );
     }
 

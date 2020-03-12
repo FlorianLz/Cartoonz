@@ -38,6 +38,16 @@ router
                 }
             );
         })
+    .get('/imgquizz/:quizzname',
+        (req, res) => {
+            db.get(
+                "select picture_url from quizzes where name=?",
+                req.params.quizzname,
+                (err, row) => {
+                    res.json(row)
+                }
+            );
+        })
     .get('/question/:id',
         (req, res) => {
             db.all(
