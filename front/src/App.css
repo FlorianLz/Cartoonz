@@ -78,12 +78,12 @@ h2{
 }
 
 .login {
-  background-image:url('images/connexion.png');
+  background-image:url('images/connexion.svg');
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center;
   width:25vw;
-  height:6vh;
+  height:5vh;
 }
 
 /* Logo + carousel*/
@@ -506,7 +506,7 @@ div#slider figure {
 ---------------------*/
 
 .ajouter2 {
-  background-image:url('images/icon_ajouter.png');
+  background-image:url('images/icon_ajouter.svg');
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center;
@@ -539,7 +539,7 @@ div#slider figure {
   height:6vh;
 }
 .deconnexion {
-  background-image:url('images/deconnexion.png');
+  background-image:url('images/deconnexion.svg');
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center;
