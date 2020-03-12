@@ -77,6 +77,16 @@ router
                 }
             );
         })
+    .get('/score/:username',
+        (req, res) => {
+            db.all(
+                "select score from users WHERE username=?",
+                req.params.username,
+                (err, row) => {
+                    res.json(row)
+                }
+            );
+        })
     .get('/users',
         (req, res) => {
             db.all(
@@ -202,6 +212,11 @@ router
     .patch('/users/:id',
         (req, res) => {
             db.run("update persons set username=? where id=?",[req.body,req.params.id]);
+            res.status(200).json(req.body);
+        })
+    .patch('/updatescore/:username/:score',
+        (req, res) => {
+            db.run("update users set score=? where username=?",[req.params.score,req.params.username]);
             res.status(200).json(req.body);
         })
 
