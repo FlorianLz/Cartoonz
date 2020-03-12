@@ -73,7 +73,8 @@ router
             db.all(
                 "select id from questions ORDER BY id DESC LIMIT 1",
                 (err, row) => {
-                    res.json(row)
+                    res.json(row[0].id);
+                    console.log(res);
                 }
             );
         })
@@ -178,7 +179,7 @@ router
                         console.log("err :: ", err);
                         res.status(500).end();
                     } else {
-                        console.log("created : ", req.body.name);
+                        console.log("Quizz crée : ", req.body.name);
                     }
                 }
             );
@@ -191,14 +192,15 @@ router
                         console.log("err :: ", err);
                         res.status(500).end();
                     } else {
-                        console.log("created : ", req.body.question);
+                        console.log("Question ajoutée : ", req.body.question);
+
                     }
                 }
             );
         })
-    .post('/addAnswer/',
+    .post('/addAnswer/:idquestion',
         (req, res) => {
-            db.run('insert into answers(sentence,solution,questions_id) values(?,?,?)', [req.body.reponse, req.body.solucereponse,req.body.idquestion],
+            db.run('insert into answers(sentence,solution,questions_id) values(?,?,?)', [req.body.reponse, req.body.solucereponse,req.params.idquestion],
                 (err) => {
                     if (err) {
                         console.log("err :: ", err);
