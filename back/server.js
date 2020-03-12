@@ -3,6 +3,7 @@ const router = require('./router');
 
 const cors = require('cors');
 const morgan = require('morgan');
+const fileUpload = require('express-fileupload');
 const bodyParser = require("body-parser");
 const app = express();
 
@@ -20,6 +21,10 @@ app.get('./public/pictures/*', (req, res) => {
 app.use(connectionRouter);
 app.use(bodyParser.urlencoded({
     extended: true
+}));
+app.use(fileUpload({
+    useTempFiles: true,
+    tempFileDir: '/tmp'
 }));
 app.use(router); // Requests processing will be defined in the file router
 app.listen(port, () => console.log('Server app listening on port ' + port));

@@ -9,7 +9,7 @@ export default function QuizzThumbnail(props)  {
             </div>
             <div className="infos">
                 <h4 className={"title"}>{props.title}</h4>
-                <p>Published on 09/03/2020 by user</p>
+                <p>Published by {props.author}</p>
                 <Link className={"play_link"} to={'/quizz/'+props.id}>Play</Link>
             </div>
         </div>

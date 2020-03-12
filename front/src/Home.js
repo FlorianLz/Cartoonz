@@ -17,8 +17,8 @@ function Home()  {
     let jsxQuizzes = quizzes.map(p => <QuizzThumbnail
         id = {p.id}
         title={p.name}
-        date={p.date}
-        author={p.author}
+        date={p.created_date}
+        author={p.id_author}
         image={p.picture_url}/>)
 
     async function getQuizzes() {
