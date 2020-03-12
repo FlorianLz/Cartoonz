@@ -55,6 +55,13 @@ router
                 (err, rows) => res.json(rows)
             );
         })
+    .get('/users/score',
+        (req, res) => {
+            db.all(
+                "select * from users ORDER BY score DESC LIMIT 10",
+                (err, rows) => res.json(rows)
+            );
+        })
     .get('/users/:id',
         (req, res) => {
             db.get(

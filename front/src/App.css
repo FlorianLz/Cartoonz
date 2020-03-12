@@ -560,3 +560,73 @@ div#slider figure {
 .pwd{
   display: none;
 }
+
+
+
+/*---------------------
+-----------------------
+   Leaderboard
+-----------------------
+---------------------*/
+.lead{
+  text-align: center;
+}
+.lead h2{
+  color: #444343;
+  margin-bottom: 30px;
+}
+.lead div {
+  display: flex;
+  justify-content: space-evenly;
+}
+.lead .divlead{
+  border: 2px solid #d1cfcf;
+  margin: auto;
+  width: 80vw;
+  border-radius: 10px;
+  height: 100%;
+  overflow:hidden;
+  justify-content: center;
+  align-items: center;
+  color: #444343;
+  margin-bottom: 10px;
+  font-size: 18px;
+}
+.lead .me{
+  border: 4px solid var(--rouge);
+}
+.lead .divlead >div:nth-child(1){
+  width:20%;
+}
+.lead .divlead >div:nth-child(2){
+  width:60%;
+}
+.lead .divlead >div:nth-child(3){
+  width:20%;
+}
+.lead .colorgold {
+  background: gold;
+  padding: 5px;
+  color: white;
+  font-weight: bold;
+}
+.lead .colorsilver {
+  background: silver;
+  padding: 5px;
+  color: white;
+  font-weight: bold;
+}
+.lead .colorbronze {
+  background: #614e1a;
+  padding: 5px;
+  color: white;
+  font-weight: bold;
+}
+.lead .color {
+  background: transparent;
+  padding: 5px;
+}
+.myScore{
+  margin-top: 10px;
+  font-size: 20px;
+}
