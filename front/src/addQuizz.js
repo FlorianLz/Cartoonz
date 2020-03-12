@@ -1,5 +1,5 @@
-import React from "react";
-import {Link, Route} from "react-router-dom";
+import React, {useState} from "react";
+import {Link, Redirect, Route} from "react-router-dom";
 import {useCookies, withCookies} from 'react-cookie';
 import Menu from "./Menu";
 import MenuConnected from "./MenuConnected";
@@ -7,6 +7,8 @@ import axios from 'axios';
 
 function AddQuiz()  {
     const [cookies, removeCookie] = useCookies(['login']);
+    const [cree, setCree] = useState(0);
+    const [nomQuizz, setNomQuizz] = useState('');
 
     function disconnect() {
         removeCookie('login');
@@ -46,37 +48,46 @@ function AddQuiz()  {
                 time : time,
             };
             axios.post('http://localhost:8000/createquizz', p).then(res => console.log(res));
+            setNomQuizz(e.target.elements[0].value);
+            setCree(1);
+        }
+    }
+    if(cree === 0){
+        if (cookies.login && cookies.login.username){
+            return (
+                <div className={"log"}>
+                    <div align="center"><img src="images/logo_final.png" alt="Image de dessins animée" className="logo"/></div>
+                    <h2> Add a quizz</h2>
+                    <form onSubmit={e => creation(e)}>
+                        <div className={"infosLog"}>
+                            <input type={"text"} placeholder={"Name of the quiz"} name={"name"} required/>
+                            <input type={"file"} id="avatar" name="myfile" />
+                            <input type={"text"} placeholder={"Keywords about the theme of your quiz"} name={"keywork"} required/>
+                        </div>
+                        <input type={"submit"} value={"Next"} className={"buttonLog"}/>
+                    </form>
+                    <MenuConnected disconnect={e => disconnect()}/>
+                </div>
+
+            );
+        } else {
+            return (
+                <div className={"log"}>
+                    <div align="center"><img src="images/logo_final.png" alt="Image de dessins animée" className="logo"/></div>
+
+                    <h2> Add a quizz </h2>
+                    <p> If you want to create a quizz, you have to be connect.</p>
+                    <p> Click on this icone.</p>
+                    <Link to={'/login'}><div className="connexioncouleur"></div></Link>
+                    <Menu/>
+                </div>
+            );
         }
     }
 
-    if (cookies.login && cookies.login.username){
-        return (
-            <div className={"log"}>
-                <div align="center"><img src="images/logo_final.png" alt="Image de dessins animée" className="logo"/></div>
-                <h2> Add a quizz</h2>
-                <form onSubmit={e => creation(e)}>
-                    <div className={"infosLog"}>
-                        <input type={"text"} placeholder={"Name of the quiz"} name={"name"} required/>
-                        <input type={"file"} id="avatar" name="myfile" />
-                        <input type={"text"} placeholder={"Keywords about the theme of your quiz"} name={"keywork"} required/>
-                    </div>
-                    <input type={"submit"} value={"Next"} className={"buttonLog"}/>
-                </form>
-                <MenuConnected disconnect={e => disconnect()}/>
-            </div>
-
-        );
-    } else {
-        return (
-            <div className={"log"}>
-                <div align="center"><img src="images/logo_final.png" alt="Image de dessins animée" className="logo"/></div>
-
-                <h2> Add a quizz </h2>
-                <p> If you want to create a quizz, you have to be connect.</p>
-                <p> Click on this icone.</p>
-                <Link to={'/login'}><div className="connexioncouleur"></div></Link>
-                <Menu/>
-            </div>
+    if (cree === 1){
+        return(
+            <Redirect to={'/addQuest/'+nomQuizz} />
         );
     }
 
