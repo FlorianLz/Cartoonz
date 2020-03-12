@@ -17,13 +17,16 @@ function AddQuiz()  {
         console.log(e.target.elements[0].value);
         //console.log(e.target.elements[1].value);
         console.log(e.target.elements[2].value);
-        let p = {
-            name : e.target.elements[0].value,
-            keywords : e.target.elements[2].value,
-            username: cookies.login.username,
-        };
-        axios.post('http://localhost:8000/createquizz', p).then(res => console.log(res));
-
+        if(e.target.elements[0].value == '' || e.target.elements[2].value == '' ){
+            console.log('merci de remplir tous les champs');
+        }else{
+            let p = {
+                name : e.target.elements[0].value,
+                keywords : e.target.elements[2].value,
+                username: cookies.login.username,
+            };
+            axios.post('http://localhost:8000/createquizz', p).then(res => console.log(res));
+        }
     }
 
     if (cookies.login && cookies.login.username){
@@ -33,9 +36,9 @@ function AddQuiz()  {
                 <h2> Add a quizz</h2>
                 <form onSubmit={e => creation(e)}>
                     <div className={"infosLog"}>
-                        <input type={"text"} placeholder={"Name of the quiz"} name={"name"}/>
+                        <input type={"text"} placeholder={"Name of the quiz"} name={"name"} required/>
                         <input type={"file"} id="avatar" name="image" />
-                        <input type={"text"} placeholder={"Keywords about the theme of your quiz"} name={"keywork"}/>
+                        <input type={"text"} placeholder={"Keywords about the theme of your quiz"} name={"keywork"} required/>
                     </div>
                     <input type={"submit"} value={"Next"} className={"buttonLog"}/>
                 </form>

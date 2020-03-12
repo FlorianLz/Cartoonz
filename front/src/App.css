@@ -21,6 +21,9 @@
 body{
   background-color:var(--gris0);
 }
+#root{
+  padding-bottom: 65px;
+}
 
 /*---------------------
 -----------------------
