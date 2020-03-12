@@ -3,6 +3,7 @@ import axios from 'axios';
 import {Redirect, Route} from 'react-router-dom';
 import {Link} from 'react-router-dom';
 import {useCookies, withCookies} from 'react-cookie';
+import Menu from "./Menu";
 
 function FormRegister(props){
     return (
@@ -20,11 +21,7 @@ function FormRegister(props){
                 <p id={"sentencepwd"}> WARNONG : it's not the same password. </p>
             </form>
             <p> Already registered ? Click <a href={"./login"} className={"lienLog"}> here </a> to sign in. </p>
-            <nav className="nav">
-                <Link to={'/addQuiz'}><div className="ajouter"></div></Link>
-                <Link to={'/'}><div className="logo_home"></div></Link>
-                <Link to={'/login'}><div className="login"></div></Link>
-            </nav>
+            <Menu/>
         </div>
     );
 }

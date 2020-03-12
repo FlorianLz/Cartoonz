@@ -3,6 +3,7 @@ import QuizzThumbnail from "./QuizzThumbnail";
 import axios from 'axios';
 import {useCookies, withCookies} from 'react-cookie';
 import {Link, Route} from "react-router-dom";
+import Menu from "./Menu";
 
 function Home()  {
     const [cookies, removeCookie] = useCookies(['login']);
@@ -83,11 +84,7 @@ function Home()  {
                 <input type="submit" id="loupe" value=""/>
             </form>
             {jsxQuizzes}
-            <nav className="nav">
-                <Link to={'/addQuiz'}><div className="ajouter"></div></Link>
-                <Link to={'/'}><div className="logo_home"></div></Link>
-                <Link to={'/login'}><div className="login"></div></Link>
-            </nav>
+            <Menu/>
         </div>
     );
 }

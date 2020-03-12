@@ -4,6 +4,7 @@ import {Route} from 'react-router-dom';
 import {Link} from 'react-router-dom';
 import {useCookies, withCookies} from 'react-cookie';
 import {Redirect} from 'react-router-dom';
+import Menu from "./Menu";
 
 function FormLogin(props)  {
 
@@ -20,11 +21,7 @@ function FormLogin(props)  {
                 <input type={"submit"} value={"login"} className={"buttonLog"}/>
             </form>
             <p> Not registered ? Click <a href={"./register"} className={"lienLog"}> here </a> to register. </p>
-            <nav className="nav">
-                <Link to={'/addQuiz'}><div className="ajouter"></div></Link>
-                <Link to={'/'}><div className="logo_home"/></Link>
-                <Link to={'/login'}><div className="login"/></Link>
-            </nav>
+            <Menu />
         </div>
 
     );

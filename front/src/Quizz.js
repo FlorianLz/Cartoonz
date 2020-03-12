@@ -5,6 +5,8 @@ import Answers from "./Answers";
 import {Link, Redirect} from "react-router-dom";
 import EndQuizz from "./EndQuizz";
 import {useCookies, withCookies} from 'react-cookie';
+import Menu from "./Menu";
+import MenuConnected from "./MenuConnected";
 
 export default function Quizz(props)  {
     const [questions, setQuestions] = useState([]);
@@ -175,13 +177,7 @@ export default function Quizz(props)  {
                         nomquizz={quizz_name}
                         picture={quizz_pic}
                     />
-                    <nav className="nav">
-                        <Link to={'/addQuiz'}><div className="ajouter2"></div></Link>
-                        <div className="trophee"></div>
-                        <Link to={'/'}><div className="logo_home2"></div></Link>
-                        <Link to={'/profil'}><div className="profil"></div></Link>
-                        <div className="deconnexion" id="disconnect" onClick={disconnect}></div>
-                    </nav>
+                    <MenuConnected disconnect={e => disconnect()}/>
                 </div>
             );
         } else {
@@ -193,10 +189,7 @@ export default function Quizz(props)  {
                         nomquizz={quizz_name}
                         picture={quizz_pic}
                     />
-                    <nav className="nav"><div className="ajouter"></div>
-                        <Link to={'/'}><div className="logo_home"></div></Link>
-                        <Link to={'/login'}><div className="login"></div></Link>
-                    </nav>
+                    <Menu />
                 </div>
             );
         }
