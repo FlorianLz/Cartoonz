@@ -11,7 +11,8 @@ import Register from "./Register.js";
 import Quizz from "./Quizz.js";
 import addQuest from "./addQuestion.js";
 import AddQuiz from "./addQuizz.js";
-import Profil from "./Profil";
+import Profil from "./Profil.js";
+import Leaderboard from "./Leaderboard.js";
 
 function App()  {
     return (
@@ -26,6 +27,7 @@ function App()  {
                     <Route exact={true} path="/profil" component={Profil}/>
                     <Route exact={true} path="/addQuiz" component={AddQuiz} />
                     <Route exact={true} path="/addQuest" component={addQuest} />
+                    <Route exact={true} path="/leaderboard" component={Leaderboard}/>
                     <Route path="*" component={() => <p>Page Not Found</p>} />
                 </Switch>
             </div>
