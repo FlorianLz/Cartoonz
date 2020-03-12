@@ -7,3 +7,4 @@ export default function MyLeaderboardThumbnail(props)  {
         </div>
     );
 }
+
