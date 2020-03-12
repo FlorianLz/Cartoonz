@@ -4,6 +4,8 @@ import {useCookies, withCookies} from 'react-cookie';
 import axios from "axios";
 import LeaderboardThumbnail from "./LeaderboardThumbnail";
 import MyLeaderboardThumbnail from "./MyLeaderboardThumbnail";
+import MenuConnected from "./MenuConnected";
+import {Redirect} from 'react-router-dom';
 
 function Leaderboard()  {
     const [cookies, removeCookie] = useCookies(['login']);
@@ -12,6 +14,9 @@ function Leaderboard()  {
 
     function disconnect() {
         removeCookie('login');
+        return(
+            <Redirect to={'/'} />
+        );
     }
 
     let jsxScore = score.map((p,i) => <LeaderboardThumbnail
@@ -45,22 +50,24 @@ function Leaderboard()  {
         getMyscore()
     },[]);
 
-    return (
-        <div className={"lead"}>
-            <div align="center"><img src="images/logo_final.png" alt="img_logo" className="logo"/></div>
-            <h2> Leaderboard</h2>
-            {jsxScore}
-            {jsxMyscore}
-            <nav className="nav">
-                <Link to={'/addQuiz'}><div className="ajouter2"></div></Link>
-                <Link to={'/leaderboard'}><div className="trophee"></div></Link>
-                <Link to={'/'}><div className="logo_home2"></div></Link>
-                <Link to={'/profil'}><div className="profil"></div></Link>
-                <div className="deconnexion" id="disconnect" onClick={disconnect}></div>
-            </nav>
-        </div>
+    if(cookies.login && cookies.login.username){
+        return (
+            <div className={"lead"}>
+                <div align="center"><img src="images/logo_final.png" alt="img_logo" className="logo"/></div>
+                <h2> Leaderboard</h2>
+                {jsxScore}
+                {jsxMyscore}
+                <MenuConnected disconnect={e => disconnect()}/>
+            </div>
 
-    );
+        );
+    } else {
+        return(
+            <Redirect to={'/'} />
+        );
+    }
+
+
 }
 
 function LocalProtectedRoute({component: Component, ...rest}) {
