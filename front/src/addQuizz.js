@@ -25,16 +25,17 @@ function AddQuiz()  {
 
     function creation(e) {
         e.preventDefault();
-        console.log(e.target.elements[0].value);
-        //console.log(e.target.elements[1].value);
-        console.log(e.target.elements[2].value);
         if(e.target.elements[0].value == '' || e.target.elements[2].value == '' ){
             console.log('merci de remplir tous les champs');
         }else{
+            let time=new Date().getTime();
             const selectedFile = e.target.myfile.files[0];
             const data = new FormData();
             data.append('file', selectedFile, selectedFile.name);
             data.append('name', e.target.elements[0].value);
+            data.append('extension', get_extension(selectedFile.name));
+            data.append('username', cookies.login.username);
+            data.append('time', time);
             axios.post("http://localhost:8000/upload", data).then(res => console.log("Res", res));
             let p = {
                 name : e.target.elements[0].value,
@@ -42,6 +43,7 @@ function AddQuiz()  {
                 username: cookies.login.username,
                 image: selectedFile.name,
                 extension : get_extension(selectedFile.name),
+                time : time,
             };
             axios.post('http://localhost:8000/createquizz', p).then(res => console.log(res));
         }
