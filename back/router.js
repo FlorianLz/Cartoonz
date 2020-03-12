@@ -115,6 +115,15 @@ router
                 }
             );
         })
+    .post('/upload', (req, res) => {
+        req.files.file.mv(__dirname + '/public/pictures/' + req.files.file.name,
+            (err) => {
+                if (err)
+                    return res.status(500).send(err);
+                res.json({file: req.files.file.name});
+            }
+        );
+    })
     .patch('/users/:id',
         (req, res) => {
             db.run("update persons set username=? where id=?",[req.body,req.params.id]);
