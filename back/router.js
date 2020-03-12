@@ -116,17 +116,17 @@ router
             );
         })
     .post('/upload', (req, res) => {
-        req.files.file.mv(__dirname + '/public/pictures/' + req.files.file.name,
+        req.files.file.mv(__dirname + '/public/pictures/' + req.body.name+'.'+req.body.extension,
             (err) => {
                 if (err)
                     return res.status(500).send(err);
-                res.json({file: req.files.file.name});
+                res.json({file: req.files.file.name, name:req.body.name});
             }
         );
     })
     .post('/createquizz',
         (req, res) => {
-            db.run('insert into quizzes(name,keywords,created_date,id_author) values(?,?,DATE(),?)', [req.body.name, req.body.keywords,req.body.username],
+            db.run('insert into quizzes(name,keywords,created_date,id_author,picture_url) values(?,?,DATE(),?,?)', [req.body.name, req.body.keywords,req.body.username,req.body.name+'.'+req.body.extension],
                 (err) => {
                     if (err) {
                         console.log("err :: ", err);

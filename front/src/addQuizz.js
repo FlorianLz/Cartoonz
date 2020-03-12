@@ -12,6 +12,17 @@ function AddQuiz()  {
         removeCookie('login');
     }
 
+    function get_extension(path) {
+        var basename = path.split(/[\\/]/).pop(),  // extract file name from full path ...
+            // (supports `\\` and `/` separators)
+            pos = basename.lastIndexOf('.');       // get last position of `.`
+
+        if (basename === '' || pos < 1)            // if file name is empty or ...
+            return "";                             //  `.` not found (-1) or comes first (0)
+
+        return basename.slice(pos + 1);            // extract extension ignoring `.`
+    }
+
     function creation(e) {
         e.preventDefault();
         console.log(e.target.elements[0].value);
@@ -20,10 +31,17 @@ function AddQuiz()  {
         if(e.target.elements[0].value == '' || e.target.elements[2].value == '' ){
             console.log('merci de remplir tous les champs');
         }else{
+            const selectedFile = e.target.myfile.files[0];
+            const data = new FormData();
+            data.append('file', selectedFile, selectedFile.name);
+            data.append('name', e.target.elements[0].value);
+            axios.post("http://localhost:8000/upload", data).then(res => console.log("Res", res));
             let p = {
                 name : e.target.elements[0].value,
                 keywords : e.target.elements[2].value,
                 username: cookies.login.username,
+                image: selectedFile.name,
+                extension : get_extension(selectedFile.name),
             };
             axios.post('http://localhost:8000/createquizz', p).then(res => console.log(res));
         }
@@ -37,7 +55,7 @@ function AddQuiz()  {
                 <form onSubmit={e => creation(e)}>
                     <div className={"infosLog"}>
                         <input type={"text"} placeholder={"Name of the quiz"} name={"name"} required/>
-                        <input type={"file"} id="avatar" name="image" />
+                        <input type={"file"} id="avatar" name="myfile" />
                         <input type={"text"} placeholder={"Keywords about the theme of your quiz"} name={"keywork"} required/>
                     </div>
                     <input type={"submit"} value={"Next"} className={"buttonLog"}/>
