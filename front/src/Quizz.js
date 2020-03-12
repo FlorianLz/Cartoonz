@@ -126,11 +126,20 @@ export default function Quizz(props)  {
     async function getQuestions() {
         const data = (await axios.get('http://localhost:8000/question/'+idquizz)).data;
         setQuestions(data);
-        setQuestion(data[0]);
-        setNbQuestions(data.length);
-        setNumQuestion(data[0].id);
-        afficherQuestion(data[0].id);
-        getAnswers(data[0].id);
+        if(data[0]){
+            setQuestion(data[0]);
+            setNbQuestions(data.length);
+            setNumQuestion(data[0].id);
+            afficherQuestion(data[0].id);
+            getAnswers(data[0].id);
+        }else{
+            setQuestion(data);
+            setNbQuestions(1);
+            setNumQuestion(data.id);
+            afficherQuestion(data.id);
+            getAnswers(data.id);
+        }
+
     }
     async function getAnswers(varr) {
         const data = (await axios.get('http://localhost:8000/answer/'+varr)).data;

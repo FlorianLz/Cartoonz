@@ -73,8 +73,7 @@ router
             db.all(
                 "select id from questions ORDER BY id DESC LIMIT 1",
                 (err, row) => {
-                    res.json(row[0].id);
-                    console.log(res);
+                    res.json(row);
                 }
             );
         })
@@ -204,6 +203,7 @@ router
                 (err) => {
                     if (err) {
                         console.log("err :: ", err);
+                        console.log(req.body);
                         res.status(500).end();
                     } else {
                         console.log("created : ", req.body.question);

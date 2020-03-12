@@ -5,6 +5,7 @@ import FinAjoutQuizz from "./FinAjoutQuizz";
 function AddQuest(props)  {
     let nomQuizz=props.match.params.nomquizz;
     const [questActuelle,setQuestActuelle] = useState(1);
+    const [questPrecedente, setQuestionPrecedente] = useState(0);
     const [idQuizz,setIdQuizz] = useState(0);
     const [imgQuizz,setImgQuizz] = useState('');
     const [termine, setTermine] = useState(0);
@@ -20,18 +21,28 @@ function AddQuest(props)  {
 
     async function ajoutrep(r1,r2,r3,r4) {
         const data = (await axios.get('http://localhost:8000/dernierid')).data;
-        let dernierId=data;
+        let dernierId=data[0].id+1;
         console.log(dernierId);
-        axios.post('http://localhost:8000/addAnswer/'+dernierId, r1).then(axios.post('http://localhost:8000/addAnswer/'+dernierId, r2));
+        console.log(r1);
+        let one = 'http://localhost:8000/addAnswer/'+dernierId;
+        let two = 'http://localhost:8000/addAnswer/'+dernierId;
+        let three = 'http://localhost:8000/addAnswer/'+dernierId;
+        let four =  'http://localhost:8000/addAnswer/'+dernierId;
+        const requestOne = axios.post(one, r1);
+        const requestTwo = axios.post(two, r2);
+        const requestThree = axios.post(three, r3);
+        const requestFour = axios.post(four, r4);
+        axios.all([requestOne, requestTwo, requestThree,requestFour]).then(setTermine(1));
+        //axios.post('http://localhost:8000/addAnswer/'+dernierId, r1).then(axios.post('http://localhost:8000/addAnswer/'+dernierId, r2));
         //await axios.post('http://localhost:8000/addAnswer/'+dernierId, r2);
         //await axios.post('http://localhost:8000/addAnswer/'+dernierId, r3);
         //await axios.post('http://localhost:8000/addAnswer/'+dernierId, r4);
-        setQuestActuelle(questActuelle+1);
+
     }
 
     function ajout(e) {
         e.preventDefault();
-        if(questActuelle < 10){
+        if(questActuelle < 2){
             //console.log(e.target.elements[0].value);
             //console.log(e.target.elements[2].value);
             //console.log(e.target.elements[4].value);
@@ -60,7 +71,7 @@ function AddQuest(props)  {
                 reponse : e.target.elements[8].value,
                 solucereponse : gBox(e.target.elements[7]),
             };
-            axios.post('http://localhost:8000/addQuestion/'+idQuizz, q).then(ajoutrep());
+            axios.post('http://localhost:8000/addQuestion/'+idQuizz, q).then(ajoutrep(r1,r2,r3,r4));
 
         }else{
             setTermine(1);
@@ -107,6 +118,8 @@ function AddQuest(props)  {
                 </form>
             </div>
         );
+
+
     }
 
     if (termine === 1){
