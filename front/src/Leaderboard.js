@@ -1,6 +1,5 @@
 import React, {useEffect, useState} from "react";
-import {Link, Route} from "react-router-dom";
-import {useCookies, withCookies} from 'react-cookie';
+import {useCookies} from 'react-cookie';
 import axios from "axios";
 import LeaderboardThumbnail from "./LeaderboardThumbnail";
 import MyLeaderboardThumbnail from "./MyLeaderboardThumbnail";
@@ -70,31 +69,4 @@ function Leaderboard()  {
 
 }
 
-function LocalProtectedRoute({component: Component, ...rest}) {
-    if (rest.allCookies && rest.allCookies.login && rest.allCookies.login.username && rest.allCookies.login.token) {
-        return (
-            <Route
-                {...rest}
-                render={routeProps => (
-                    <Component {...routeProps} username={rest.allCookies.login.username}
-                               token={rest.allCookies.login.token}/>
-                )}
-            />
-        );
-    }
-    return <p>!!</p>;
-}
-
-function LocalProtectedLink({...rest}) {
-    if (rest.allCookies && rest.allCookies.login && rest.allCookies.login.username && rest.allCookies.login.token) {
-        return <Link className={rest.className} to={rest.to}>cities</Link>
-    }else{
-        return null;
-    }
-}
-
-const ProtectedRoute = withCookies(LocalProtectedRoute);
-const ProtectedLink = withCookies(LocalProtectedLink);
-
-export {ProtectedRoute, ProtectedLink};
 export default Leaderboard;
