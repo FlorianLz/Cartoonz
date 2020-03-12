@@ -1,6 +1,8 @@
 import React from "react";
 import {Link, Route} from "react-router-dom";
 import {useCookies, withCookies} from 'react-cookie';
+import MenuConnected from "./MenuConnected";
+import Menu from "./Menu";
 
 function AddQuiz()  {
     const [cookies, removeCookie] = useCookies(['login']);
@@ -22,13 +24,7 @@ function AddQuiz()  {
                     </div>
                     <input type={"submit"} value={"Next"} className={"buttonLog"}/>
                 </form>
-                <nav className="nav">
-                    <Link to={'/addQuiz'}><div className="ajouter2"></div></Link>
-                    <div className="trophee"></div>
-                    <Link to={'/'}><div className="logo_home2"></div></Link>
-                    <Link to={'/profil'}><div className="profil"></div></Link>
-                    <div className="deconnexion" id="disconnect" onClick={disconnect}></div>
-                </nav>
+                <MenuConnected disconnect={e => disconnect()}/>
             </div>
 
         );
@@ -41,12 +37,7 @@ function AddQuiz()  {
                 <p> If you want to create a quizz, you have to be connect.</p>
                 <p> Click on this icone.</p>
                 <Link to={'/login'}><div className="connexioncouleur"></div></Link>
-
-                <nav className="nav">
-                    <Link to={'/addQuiz'}><div className="ajouter"></div></Link>
-                    <Link to={'/'}><div className="logo_home"></div></Link>
-                    <Link to={'/login'}><div className="login"></div></Link>
-                </nav>
+                <Menu />
             </div>
         );
     }
