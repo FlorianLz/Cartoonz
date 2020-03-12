@@ -124,6 +124,19 @@ router
             }
         );
     })
+    .post('/createquizz',
+        (req, res) => {
+            db.run('insert into quizzes(name,keywords,created_date,id_author) values(?,?,DATE(),?)', [req.body.name, req.body.keywords,req.body.username],
+                (err) => {
+                    if (err) {
+                        console.log("err :: ", err);
+                        res.status(500).end();
+                    } else {
+                        console.log("created : ", req.body.name);
+                    }
+                }
+            );
+        })
     .patch('/users/:id',
         (req, res) => {
             db.run("update persons set username=? where id=?",[req.body,req.params.id]);

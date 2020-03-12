@@ -1,6 +1,9 @@
 import React from "react";
 import {Link, Route} from "react-router-dom";
 import {useCookies, withCookies} from 'react-cookie';
+import Menu from "./Menu";
+import MenuConnected from "./MenuConnected";
+import axios from 'axios';
 
 function AddQuiz()  {
     const [cookies, removeCookie] = useCookies(['login']);
@@ -9,12 +12,26 @@ function AddQuiz()  {
         removeCookie('login');
     }
 
+    function creation(e) {
+        e.preventDefault();
+        console.log(e.target.elements[0].value);
+        //console.log(e.target.elements[1].value);
+        console.log(e.target.elements[2].value);
+        let p = {
+            name : e.target.elements[0].value,
+            keywords : e.target.elements[2].value,
+            username: cookies.login.username,
+        };
+        axios.post('http://localhost:8000/createquizz', p).then(res => console.log(res));
+
+    }
+
     if (cookies.login && cookies.login.username){
         return (
             <div className={"log"}>
                 <div align="center"><img src="images/logo_final.png" alt="Image de dessins animée" className="logo"/></div>
-                <h2> Add quizz</h2>
-                <form action="#">
+                <h2> Add a quizz</h2>
+                <form onSubmit={e => creation(e)}>
                     <div className={"infosLog"}>
                         <input type={"text"} placeholder={"Name of the quiz"} name={"name"}/>
                         <input type={"file"} id="avatar" name="image" />
@@ -22,13 +39,7 @@ function AddQuiz()  {
                     </div>
                     <input type={"submit"} value={"Next"} className={"buttonLog"}/>
                 </form>
-                <nav className="nav">
-                    <Link to={'/addQuiz'}><div className="ajouter2"></div></Link>
-                    <div className="trophee"></div>
-                    <Link to={'/'}><div className="logo_home2"></div></Link>
-                    <Link to={'/profil'}><div className="profil"></div></Link>
-                    <div className="deconnexion" id="disconnect" onClick={disconnect}></div>
-                </nav>
+                <MenuConnected disconnect={e => disconnect()}/>
             </div>
 
         );
@@ -41,12 +52,7 @@ function AddQuiz()  {
                 <p> If you want to create a quizz, you have to be connect.</p>
                 <p> Click on this icone.</p>
                 <Link to={'/login'}><div className="connexioncouleur"></div></Link>
-
-                <nav className="nav">
-                    <Link to={'/addQuiz'}><div className="ajouter"></div></Link>
-                    <Link to={'/'}><div className="logo_home"></div></Link>
-                    <Link to={'/login'}><div className="login"></div></Link>
-                </nav>
+                <Menu/>
             </div>
         );
     }
