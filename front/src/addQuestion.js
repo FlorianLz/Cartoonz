@@ -20,28 +20,25 @@ function AddQuest(props)  {
 
     async function ajoutrep(r1,r2,r3,r4) {
         const data = (await axios.get('http://localhost:8000/dernierid')).data;
-        console.log(data);
-        let dernierId=data[0].id+1;
-        console.log(data[0].id);
-        r1.idquestion=dernierId;
-        r2.idquestion=dernierId;
-        r3.idquestion=dernierId;
-        r4.idquestion=dernierId;
-        axios.post('http://localhost:8000/addAnswer', r1);
-        axios.post('http://localhost:8000/addAnswer', r2);
-        axios.post('http://localhost:8000/addAnswer', r3);
-        axios.post('http://localhost:8000/addAnswer', r4);
+        let dernierId=data;
+        console.log(dernierId);
+        axios.post('http://localhost:8000/addAnswer/'+dernierId, r1).then(axios.post('http://localhost:8000/addAnswer/'+dernierId, r2));
+        //await axios.post('http://localhost:8000/addAnswer/'+dernierId, r2);
+        //await axios.post('http://localhost:8000/addAnswer/'+dernierId, r3);
+        //await axios.post('http://localhost:8000/addAnswer/'+dernierId, r4);
+        setQuestActuelle(questActuelle+1);
     }
 
     function ajout(e) {
         e.preventDefault();
         if(questActuelle < 10){
-            console.log(e.target.elements[0].value);
-            console.log(e.target.elements[2].value);
-            console.log(e.target.elements[4].value);
-            console.log(e.target.elements[6].value);
-            console.log(e.target.elements[8].value);
-            console.log(e.target.elements[9].value);
+            //console.log(e.target.elements[0].value);
+            //console.log(e.target.elements[2].value);
+            //console.log(e.target.elements[4].value);
+            //console.log(e.target.elements[6].value);
+            //console.log(e.target.elements[8].value);
+            //console.log(e.target.elements[9].value);
+
             let q = {
                 question : e.target.elements[0].value,
                 score : e.target.elements[9].value,
@@ -63,9 +60,8 @@ function AddQuest(props)  {
                 reponse : e.target.elements[8].value,
                 solucereponse : gBox(e.target.elements[7]),
             };
-            axios.post('http://localhost:8000/addQuestion/'+idQuizz, q);
-            ajoutrep(r1,r2,r3,r4);
-            setQuestActuelle(questActuelle+1);
+            axios.post('http://localhost:8000/addQuestion/'+idQuizz, q).then(ajoutrep());
+
         }else{
             setTermine(1);
         }
@@ -92,9 +88,9 @@ function AddQuest(props)  {
             <div className={"Rep endRep"}>
                 <div align="center"><img src="../images/logo_final.png" alt="Image de dessins animée" className="logo"/></div>
                 <h2> Add quest {questActuelle} for {nomQuizz}</h2>
-                <form onSubmit={e => ajout(e)}>
+                <form onSubmit={e => ajout(e)} id={"myform"}>
                     <div className={"infosLog"}>
-                        <center><input type={"text"} placeholder={"question 1"} name={"quest1"} className={"quest"}/></center>
+                        <center><input type={"text"} placeholder={"question"} name={"quest1"} className={"quest"}/></center>
                         <div className={"addRep"}>
                             <div>
                                 <div><input type="checkbox" id="scales" name="scales" /><input type={"text"} placeholder={"Response 1"} name={"rep1"}/></div>
@@ -105,12 +101,11 @@ function AddQuest(props)  {
                                 <div><input type="checkbox" id="scales" name="scales" /><input type={"text"} placeholder={"Response 4"} name={"rep4"}/></div>
                             </div>
                         </div>
-                        <center><input type={"text"} placeholder={"score 1"} name={"score1"} className={"score"}/></center>
+                        <center><input type={"text"} placeholder={"score"} name={"score1"} className={"score"}/></center>
                     </div>
                     <center><input type={"submit"} value={"Next"} className={"buttonLog"}/></center>
                 </form>
             </div>
-
         );
     }
 

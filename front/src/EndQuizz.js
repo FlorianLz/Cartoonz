@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect, useState} from "react";
 import {Link} from "react-router-dom";
 import axios from "axios";
 import {useCookies} from 'react-cookie';
@@ -7,22 +7,23 @@ import {useCookies} from 'react-cookie';
 
 export default function EndQuizz(props)  {
     const [cookies, removeCookie] = useCookies(['login']);
+    const [myScore, setMyScore] = useState(0);
+
+
     if(cookies.login && cookies.login.username){
+        async function getMyScore() {
+            let username = cookies.login.username;
+            const data = (await axios.get('http://localhost:8000/score/'+username)).data;
+            let myScore = data[0].score;
+            let newscore=myScore+props.score;
+            axios.patch('http://localhost:8000/updatescore/'+username+'/'+newscore);
+        }
+        getMyScore();
 
 
         function disconnect() {
             removeCookie('login');
         }
-
-        let username = cookies.login.username;
-
-        const ancienScore = (axios.get('http://localhost:8000/score/'+username)).data;
-
-        let nvScore=ancienScore+props.score;
-
-        //Maj du score dans la bdd
-
-        axios.patch('http://localhost:8000/updatescore/'+username+'/'+nvScore);
     }
     return (
         <div className="endquiz">
