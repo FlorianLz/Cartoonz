@@ -1,26 +1,43 @@
-import React from "react";
+import React, {useEffect, useState} from "react";
 import {Link, Route} from "react-router-dom";
 import {useCookies, withCookies} from 'react-cookie';
 import {Redirect} from 'react-router-dom';
 import axios from "axios";
+import ProfilThumbnail from "./ProfilThumbnail";
 
 function Profil(){
     const [cookies, removeCookie] = useCookies(['login']);
+    const [infos, setInfos] = useState([]);
 
     function disconnect() {
         removeCookie('login');
     }
 
-    async function recupererInfos(){
+    let jsxInfos = <ProfilThumbnail
+        id = {infos.id}
+        username = {infos.username}
+        password = {infos.password}
+        avatar = {infos.avatar}
+        score = {infos.score}
+    />;
+
+    async function getInfos(){
         const perso = cookies.login.username;
+        const data = (await axios.get('http://localhost:8000/users/name/'+perso)).data;
+        setInfos(infos.push(data));
+        setInfos(infos[0]);
     }
 
+    useEffect(() => {
+        getInfos()
+    },[]);
+
     if (cookies.login && cookies.login.username){
-        console.log(cookies.login.username);
         return(
-            <div>
+            <div className={"log"}>
                 <div align="center"><img src="images/logo_final.png" alt="Image de dessins animée" className="logo"/></div>
-                <h2> This is the profil of </h2>
+                <h2> My Profil </h2>
+                {jsxInfos}
                 <nav className="nav">
                     <Link to={'/addQuiz'}><div className="ajouter2"></div></Link>
                     <div className="trophee"></div>
