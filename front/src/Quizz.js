@@ -201,23 +201,47 @@ export default function Quizz(props)  {
             );
         }
     }
-    return (
-        <div className={'quizzcontent'}>
-            <div align="center"><img src="../images/logo_final.png" alt="Image de dessins animée" className="logo"/></div>
-            <h2 className="quizzName">{quizz_name}</h2>
-            <p className="scorePartie">Your score : {score}</p>
-            <p className="infosQuestion"> <span className="nbQuestion">Question {progression+1} / {nbQuestions} </span>for {question.score} points </p>
-            <h3>{question.sentence}</h3>
-            <ul>
-                {jsxAnswers}
-            </ul>
-            <div className={"buttondiv"}>
-                <div className={"buttondiv validate_button"} onClick={e => next()}>Validate</div>
+    if(question.video_url === null){
+        return (
+            <div className={'quizzcontent'}>
+                <div align="center"><img src="../images/logo_final.png" alt="Image de dessins animée" className="logo"/></div>
+                <h2 className="quizzName">{quizz_name}</h2>
+                <p className="scorePartie">Your score : {score}</p>
+                <p className="infosQuestion"> <span className="nbQuestion">Question {progression+1} / {nbQuestions} </span>for {question.score} points </p>
+                <h3>{question.sentence}</h3>
+                <ul>
+                    {jsxAnswers}
+                </ul>
+                <div className={"buttondiv"}>
+                    <div className={"buttondiv validate_button"} onClick={e => next()}>Validate</div>
+                </div>
+
+
             </div>
 
+        );
+    }else{
+        return (
+            <div className={'quizzcontent'}>
+                <div align="center"><img src="../images/logo_final.png" alt="Image de dessins animée" className="logo"/></div>
+                <h2 className="quizzName">{quizz_name}</h2>
+                <p className="scorePartie">Your score : {score}</p>
+                <p className="infosQuestion"> <span className="nbQuestion">Question {progression+1} / {nbQuestions} </span>for {question.score} points </p>
+                <video width="320" height="240" autoPlay>
+                    <source src={"localhost:8000/"+question.video_url} type="video/mp4" />
+                </video>
+                <ul>
+                    {jsxAnswers}
+                </ul>
+                <div className={"buttondiv"}>
+                    <div className={"buttondiv validate_button"} onClick={e => next()}>Validate</div>
+                </div>
 
-        </div>
 
-    );
+            </div>
+
+        );
+    }
+
 
 }
