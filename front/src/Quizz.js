@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from "react";
 import axios from "axios";
 import Answers from "./Answers";
+import Video from "./Video";
 import EndQuizz from "./EndQuizz";
 import {useCookies} from 'react-cookie';
 import Menu from "./Menu";
@@ -21,6 +22,8 @@ export default function Quizz(props)  {
     const [quizz_pic, setQuizzPic] = useState([]);
     let idquizz = props.match.params.id;
     const [cookies, removeCookie] = useCookies(['login']);
+    const [video, setVideo] = useState([]);
+
 
     /*let jsxQuestion = <Question
         id = {question.id}
@@ -39,6 +42,8 @@ export default function Quizz(props)  {
         picture={p.picture_url}
         checked={e => checked(e, p.id)}
     />);
+
+    let jsxVideo = video;
 
     function next(){
         if(progression < nbQuestions-1){
@@ -71,10 +76,10 @@ export default function Quizz(props)  {
             setPerdu([]);
             afficherQuestion(suivant);
             getAnswers(suivant);
-
+            getVideo(suivant);
         }
+        //setVideo(<Video video={questions[progression+1].video_url}/>);
         setProgression(progression+1);
-
     }
 
     function aGagne(){
@@ -132,6 +137,7 @@ export default function Quizz(props)  {
             setNumQuestion(data[0].id);
             afficherQuestion(data[0].id);
             getAnswers(data[0].id);
+            setVideo(<Video video={data[0].video_url} />);
         }else{
             setQuestion(data);
             setNbQuestions(1);
@@ -144,6 +150,11 @@ export default function Quizz(props)  {
     async function getAnswers(varr) {
         const data = (await axios.get('http://localhost:8000/answer/'+varr)).data;
         setAnswers(data);
+    }
+    async function getVideo(varr) {
+        const data = (await axios.get('http://localhost:8000/video/'+varr)).data;
+        setVideo(<Video video={data[0].video_url} />);
+        console.log(data[0].video_url)
     }
     async function getSoluce(idq, idr) {
         const data = (await axios.get('http://localhost:8000/soluce/'+idq+'/'+idr)).data;
@@ -227,9 +238,7 @@ export default function Quizz(props)  {
                 <h2 className="quizzName">{quizz_name}</h2>
                 <p className="scorePartie">Your score : {score}</p>
                 <p className="infosQuestion"> <span className="nbQuestion">Question {progression+1} / {nbQuestions} </span>for {question.score} points </p>
-                <video width="320" height="240" autoPlay>
-                    <source src={"localhost:8000/"+question.video_url} type="video/mp4" />
-                </video>
+                {jsxVideo}
                 <ul>
                     {jsxAnswers}
                 </ul>

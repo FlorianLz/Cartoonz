@@ -141,6 +141,16 @@ router
                 }
             );
         })
+    .get('/video/:id',
+        (req, res) => {
+            db.all(
+                "select video_url from questions where id=?",
+                req.params.id,
+                (err, row) => {
+                    res.json(row)
+                }
+            );
+        })
     .get('/soluce/:idquestion/:idreponse',
         (req, res) => {
             db.all(

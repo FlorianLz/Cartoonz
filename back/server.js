@@ -18,6 +18,9 @@ app.use(express.static(__dirname + '/public/pictures'));
 app.get('./public/pictures/*', (req, res) => {
     res.sendFile(req.url, {root: './'})
 });
+app.get('./public/pictures/videoc', (req, res) => {
+    res.sendFile(req.url, {root: './'})
+});
 app.use(connectionRouter);
 app.use(bodyParser.urlencoded({
     extended: true
