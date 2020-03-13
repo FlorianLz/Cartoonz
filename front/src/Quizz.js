@@ -78,7 +78,6 @@ export default function Quizz(props)  {
             getAnswers(suivant);
             getVideo(suivant);
         }
-        //setVideo(<Video video={questions[progression+1].video_url}/>);
         setProgression(progression+1);
     }
 
