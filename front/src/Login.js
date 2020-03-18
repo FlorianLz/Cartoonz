@@ -20,7 +20,7 @@ function FormLogin(props)  {
                 </div>
                 <input type={"submit"} value={"login"} className={"buttonLog"}/>
             </form>
-            <p> Not registered ? Click <a href={"./register"} className={"lienLog"}> here </a> to register. </p>
+            <p> Not registered ? Click <Link to={'/register'} className={'lienLog'}> here </Link> to register. </p>
             <Menu />
         </div>
 

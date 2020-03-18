@@ -20,7 +20,7 @@ function FormRegister(props){
                 <input type={"submit"} value={"create"} className={"buttonLog"}/>
                 <p id={"sentencepwd"}> WARNONG : it's not the same password. </p>
             </form>
-            <p> Already registered ? Click <a href={"./login"} className={"lienLog"}> here </a> to sign in. </p>
+            <p> Already registered ? Click <Link to={'/login'} className={'lienLog'}> here </Link> to sign in. </p>
             <Menu/>
         </div>
     );
